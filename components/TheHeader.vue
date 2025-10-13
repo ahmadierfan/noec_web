@@ -7,7 +7,7 @@
           <NuxtLink to="/" class="flex items-center space-x-3 group">
             <div
               class="w-10 h-10  rounded-lg flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300">
-              <img src="/images/logo.png" />
+              <img src="/images/Logo.png" />
             </div>
             <div class="flex flex-col">
               <span class="text-xl font-bold text-gray-800 leading-tight">NextOil & Energy</span>
