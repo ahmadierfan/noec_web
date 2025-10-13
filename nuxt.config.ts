@@ -19,6 +19,9 @@ export default defineNuxtConfig({
             htmlAttrs: {
                 lang: 'fa',
             },
+            meta: [
+                { name: 'robots', content: 'noindex, nofollow' }
+            ],
             title: 'شهابان'
         },
     },

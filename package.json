@@ -9,7 +9,7 @@
     "start": "nuxt start",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "deploy": "PORT=4440 pm2 start npm --name store_panel -- start"
+    "deploy": "PORT=3555 pm2 start npm --name store_panel -- start"
   },
   "dependencies": {
     "@iconify-json/uil": "^1.2.3",
