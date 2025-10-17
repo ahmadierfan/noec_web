@@ -109,7 +109,7 @@
             <div class="grid grid-cols-2 gap-4">
               <div v-for="(image, index) in gallery" :key="index" class="rounded-2xl overflow-hidden shadow-2xl"
                 :class="image.class">
-                <img :src="image.src" :alt="image.alt" class="w-full h-64 object-cover">
+                <img :src="image.src" :alt="image.alt" class="w-full h-full object-cover">
               </div>
             </div>
           </div>
@@ -236,10 +236,10 @@ const features = [
 ]
 
 const gallery = [
-  { src: '/images/hero-1.jpg', alt: 'Oil Refinery', title: 'Refinery Operations', class: 'mt-8' },
-  { src: '/images/hero-1.jpg', alt: 'Engineering', title: 'Engineering Excellence', class: '' },
-  { src: '/images/hero-1.jpg', alt: 'Pipeline', title: 'Pipeline Construction', class: '' },
-  { src: '/images/hero-1.jpg', alt: 'Technology', title: 'Innovation Center', class: 'mt-8' }
+  { src: '/images/projects/1.jpg', alt: 'Oil Refinery', title: 'Refinery Operations', class: 'mt-8' },
+  { src: '/images/projects/2.jpg', alt: 'Engineering', title: 'Engineering Excellence', class: '' },
+  { src: '/images/projects/3.jpg', alt: 'Pipeline', title: 'Pipeline Construction', class: '' },
+  { src: '/images/projects/4.jpg', alt: 'Technology', title: 'Innovation Center', class: 'mt-8' }
 ]
 
 const services = [

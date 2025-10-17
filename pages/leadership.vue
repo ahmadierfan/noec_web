@@ -56,10 +56,10 @@
           <p class="text-xl text-gray-600">Highly qualified professionals with decades of industry experience</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 mb-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 mb-20 md:px-6">
           <div v-for="leader in leadershipTeam" :key="leader.name"
             class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition duration-300">
-            <div class="h-80 overflow-hidden">
+            <div class="h-80 hidden overflow-hidden">
               <img :src="leader.image" :alt="leader.name"
                 class="w-full h-full m-4 object-cover group-hover:scale-105 transition duration-500" />
             </div>
