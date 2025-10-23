@@ -1,377 +1,930 @@
 <template>
   <div>
-    <!-- Hero Header -->
-    <section class="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white py-20 overflow-hidden">
+    <!-- Page Header -->
+    <section ref="headerSection"
+      class="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white py-20 overflow-hidden">
       <div class="absolute inset-0 bg-black bg-opacity-20"></div>
       <div
-        class="absolute top-0 left-0 w-72 h-72 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse">
+        class="absolute top-0 left-0 w-72 h-72 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float-slow">
       </div>
       <div
-        class="absolute bottom-0 right-0 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse animation-delay-2000">
+        class="absolute bottom-0 right-0 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float animation-delay-2000">
       </div>
 
       <div class="container mx-auto px-4 relative z-10">
         <div class="max-w-3xl">
-          <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-            Our <span class="text-blue-300">Services</span>
+          <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight section-title"
+            :class="{ 'animate-title-in': isHeaderVisible }">
+            Our <span class="text-blue-300 magic-text">Projects</span>
           </h1>
-          <p class="text-xl md:text-2xl text-blue-100 mb-8 leading-relaxed">
-            End-to-end solutions for energy, oil & gas, and petrochemical industries with innovation and excellence
+          <p class="text-xl md:text-2xl text-blue-100 mb-8 leading-relaxed section-subtitle"
+            :class="{ 'animate-subtitle-in': isHeaderVisible }">
+            Pioneering energy solutions across global markets with innovation and excellence
           </p>
-          <div class="flex flex-wrap gap-4">
-            <div class="flex items-center bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
-              <svg class="w-5 h-5 mr-2 text-blue-300" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clip-rule="evenodd" />
-              </svg>
-              <span class="text-blue-100">Global Expertise</span>
-            </div>
-            <div class="flex items-center bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
-              <svg class="w-5 h-5 mr-2 text-blue-300" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clip-rule="evenodd" />
-              </svg>
-              <span class="text-blue-100">Innovation Driven</span>
-            </div>
-            <div class="flex items-center bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
-              <svg class="w-5 h-5 mr-2 text-blue-300" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clip-rule="evenodd" />
-              </svg>
-              <span class="text-blue-100">Quality Assured</span>
+          <div class="flex items-center space-x-4 text-blue-200">
+            <div v-for="(stat, index) in headerStats" :key="stat.text" class="header-stat-item"
+              :class="{ 'animate-stat-in': isHeaderVisible }" :style="`animation-delay: ${500 + index * 150}ms`">
+              <div class="flex items-center">
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd" />
+                </svg>
+                <span>{{ stat.text }}</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Capabilities Section -->
-    <section class="section-padding bg-white mb-20">
+    <!-- Featured Projects -->
+    <section ref="projectsSection" class="section-padding bg-white projects-section">
       <div class="container-custom">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20 items-center mx-20 mt-20">
-          <div class="relative">
-            <div class="relative z-10">
-              <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6 leading-tight">
-                Comprehensive <span class="text-blue-600">Engineering</span> Solutions
-              </h2>
-              <p class="text-lg text-gray-600 mb-8 leading-relaxed">
-                NextOil & Energy Ltd. leverages cutting-edge technology and financial resources to deliver
-                complete project packages from initial planning through design, procurement, construction, and
-                installation.
-              </p>
+        <div class="text-center mb-16 projects-header" :class="{ 'animate-projects-header': isProjectsVisible }">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4 mt-20">Engineering Excellence</h2>
+          <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+            Showcasing our most innovative and complex energy projects that demonstrate our technical capabilities
+          </p>
+        </div>
 
-              <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-2xl border border-blue-100">
-                <h3 class="text-xl font-bold text-blue-900 mb-4 flex items-center">
-                  <svg class="w-5 h-5 mr-2 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+        <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 mb-20">
+          <div v-for="(project, index) in featuredProjects" :key="project.title"
+            class="m-10 group relative bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 project-card"
+            :class="{ 'animate-project-in': isProjectsVisible }" :style="`animation-delay: ${400 + index * 200}ms`">
+            <div class="absolute top-4 right-4 z-20 project-badge" :class="{ 'animate-badge-in': isProjectsVisible }"
+              :style="`animation-delay: ${600 + index * 200}ms`">
+              <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
+                {{ project.tags[0] }}
+              </span>
+            </div>
+
+            <div class="h-80 overflow-hidden relative">
+              <img :src="project.image" :alt="project.title"
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              </div>
+
+              <!-- Project Stats Overlay -->
+              <div
+                class="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0 project-stats">
+                <div class="flex space-x-4 text-white">
+                  <div class="text-center">
+                    <div class="text-2xl font-bold">{{ project.capacity }}</div>
+                    <div class="text-xs opacity-90">Capacity</div>
+                  </div>
+                  <div class="text-center">
+                    <div class="text-2xl font-bold">{{ project.duration }}</div>
+                    <div class="text-xs opacity-90">Duration</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-8">
+              <h3
+                class="text-2xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors duration-300 project-title">
+                {{ project.title }}
+              </h3>
+              <p class="text-gray-600 mb-6 leading-relaxed project-description">{{ project.description }}</p>
+
+              <div class="flex flex-wrap gap-2 mb-6 project-tags">
+                <span v-for="(tag, tagIndex) in project.tags" :key="tag"
+                  class="bg-gray-100 text-gray-700 px-3 py-1.5 rounded-full text-sm font-medium hover:bg-blue-100 hover:text-blue-700 transition-all duration-300 cursor-default project-tag"
+                  :class="{ 'animate-tag-in': isProjectsVisible }"
+                  :style="`animation-delay: ${800 + index * 200 + tagIndex * 50}ms`">
+                  {{ tag }}
+                </span>
+              </div>
+
+              <div class="flex items-center justify-between pt-4 border-t border-gray-100 project-footer">
+                <div class="flex items-center text-gray-500 text-sm project-year">
+                  <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
                       clip-rule="evenodd" />
                   </svg>
-                  Why Choose NextOil & Energy?
-                </h3>
-                <div class="space-y-3">
-                  <div v-for="feature in whyChooseUs" :key="feature" class="flex items-center group">
-                    <div
-                      class="w-2 h-2 bg-blue-500 rounded-full mr-3 group-hover:scale-150 transition-transform duration-300">
-                    </div>
-                    <span class="text-gray-700 font-medium group-hover:text-blue-600 transition-colors duration-300">{{
-                      feature }}</span>
-                  </div>
+                  Completed {{ project.year }}
                 </div>
+                <button
+                  class="flex items-center text-blue-600 font-semibold hover:text-blue-700 transition-colors duration-300 group/btn project-button">
+                  View Details
+                  <svg class="w-4 h-4 ml-2 transform group-hover/btn:translate-x-1 transition-transform duration-300"
+                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
               </div>
             </div>
-
-            <!-- Background Elements -->
-            <div class="absolute -top-4 -left-4 w-24 h-24 bg-blue-100 rounded-full opacity-50"></div>
-            <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-blue-50 rounded-full opacity-30"></div>
-          </div>
-
-          <div class="relative">
-            <div class="relative rounded-2xl overflow-hidden shadow-2xl group">
-              <img src="/images/hero-1.jpg" alt="Our Services"
-                class="w-full h-96 object-cover transform group-hover:scale-105 transition-transform duration-700" />
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-              </div>
-
-              <!-- Floating Stats -->
-              <div
-                class="absolute bottom-6 left-6 right-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
-                <div class="grid grid-cols-3 gap-4 text-white">
-                  <div class="text-center bg-white/20 backdrop-blur-sm rounded-lg p-3">
-                    <div class="text-2xl font-bold">50+</div>
-                    <div class="text-xs opacity-90">Projects</div>
-                  </div>
-                  <div class="text-center bg-white/20 backdrop-blur-sm rounded-lg p-3">
-                    <div class="text-2xl font-bold">15+</div>
-                    <div class="text-xs opacity-90">Countries</div>
-                  </div>
-                  <div class="text-center bg-white/20 backdrop-blur-sm rounded-lg p-3">
-                    <div class="text-2xl font-bold">25+</div>
-                    <div class="text-xs opacity-90">Years</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
           </div>
         </div>
 
-        <!-- Services Grid -->
-        <div class="mb-20 mx-20 mt-20">
-          <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Comprehensive Service Portfolio</h2>
+        <!-- Company Experience -->
+        <div ref="experienceSection" class="mb-20 experience-section">
+          <div class="text-center mb-12 mt-10 experience-header"
+            :class="{ 'animate-experience-header': isExperienceVisible }">
+            <h3 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Company Experience</h3>
             <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-              Delivering excellence across the entire project lifecycle with innovative solutions
+              Decades of successful project delivery across diverse energy sectors
             </p>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div v-for="(service, index) in services" :key="service.title"
-              class="group relative bg-gradient-to-br from-white to-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-2xl border border-gray-100 transition-all duration-500 transform hover:-translate-y-2"
-              :style="`animation-delay: ${index * 100}ms`">
-              <!-- Background Gradient on Hover -->
+            <div v-for="(experience, index) in companyExperiences" :key="experience.title"
+              class="bg-gradient-to-br from-white to-gray-50 p-6 m-2 rounded-xl shadow-lg hover:shadow-xl border border-gray-100 transition-all duration-500 transform hover:-translate-y-1 group experience-card"
+              :class="{ 'animate-experience-in': isExperienceVisible }"
+              :style="`animation-delay: ${300 + index * 100}ms`">
               <div
-                class="absolute inset-0 bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl opacity-0 group-hover:opacity-5 transition-opacity duration-500">
+                class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-600 transition-colors duration-300 experience-icon">
+                <svg class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" fill="none"
+                  stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2-2H5a2 2 0 00-2 2v16a2 2 0 002 2h14a2 2 0 002-2zM9 21V7h6v14" />
+                </svg>
               </div>
 
-              <!-- Icon Container -->
-              <div class="relative z-10">
-                <div
-                  class="w-16 h-16 bg-gradient-to-br from-blue-100 to-blue-200 rounded-2xl flex items-center justify-center mb-6 group-hover:from-blue-200 group-hover:to-blue-300 transition-all duration-500 transform group-hover:scale-110 shadow-md">
-                  <svg class="w-8 h-8 text-blue-600 transform group-hover:scale-110 transition-transform duration-500"
-                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="service.icon" />
+              <h4
+                class="text-lg font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors duration-300 experience-title">
+                {{ experience.title }}
+              </h4>
+              <p class="text-gray-600 mb-4 leading-relaxed experience-description">{{ experience.description }}</p>
+
+              <div v-if="experience.capacities" class="mt-4 experience-capacities">
+                <p class="text-sm font-semibold text-gray-700 mb-3 flex items-center">
+                  <svg class="w-4 h-4 mr-2 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd" />
                   </svg>
-                </div>
-
-                <h3
-                  class="text-xl font-bold text-gray-800 mb-4 group-hover:text-blue-600 transition-colors duration-300">
-                  {{ service.title }}
-                </h3>
-                <p class="text-gray-600 mb-6 leading-relaxed">{{ service.description }}</p>
-
-                <ul class="space-y-3">
-                  <li v-for="item in service.items" :key="item"
-                    class="flex items-center text-sm text-gray-600 hover:text-blue-600 transition-colors duration-300 group/item">
-                    <svg
-                      class="w-4 h-4 text-green-500 mr-3 flex-shrink-0 transform group-hover/item:scale-125 transition-transform duration-300"
-                      fill="currentColor" viewBox="0 0 20 20">
+                  Key Capacities:
+                </p>
+                <ul class="text-sm text-gray-600 space-y-2">
+                  <li v-for="(capacity, capacityIndex) in experience.capacities" :key="capacity"
+                    class="flex items-center hover:text-blue-600 transition-colors duration-300 capacity-item"
+                    :class="{ 'animate-capacity-in': isExperienceVisible }"
+                    :style="`animation-delay: ${500 + index * 100 + capacityIndex * 50}ms`">
+                    <svg class="w-3 h-3 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fill-rule="evenodd"
                         d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
                         clip-rule="evenodd" />
                     </svg>
-                    {{ item }}
+                    {{ capacity }}
                   </li>
                 </ul>
-
-                <!-- Learn More Button -->
-                <div class="mt-6 pt-6 border-t border-gray-100">
-                  <button
-                    class="flex items-center text-blue-600 font-semibold hover:text-blue-700 transition-colors duration-300 group/btn">
-                    Learn More
-                    <svg class="w-4 h-4 ml-2 transform group-hover/btn:translate-x-1 transition-transform duration-300"
-                      fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </button>
-                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Technical Know-How -->
-        <section class="bg-gradient-to-r from-gray-50 to-blue-50 rounded-3xl p-8 md:p-12 shadow-inner mb-20">
-          <div class="text-center mb-12">
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Proprietary Technology</h2>
+        <!-- Fabrication Capabilities -->
+        <div ref="fabricationSection"
+          class="bg-gradient-to-r from-blue-50 mb-20 to-indigo-50 rounded-2xl p-8 md:p-12 shadow-inner fabrication-section">
+          <div class="text-center mb-20 mt-20 fabrication-header"
+            :class="{ 'animate-fabrication-header': isFabricationVisible }">
+            <h3 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Equipment Fabrication Capabilities</h3>
             <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-              Cutting-edge process technologies developed through extensive R&D and testing
+              State-of-the-art manufacturing facilities for custom industrial equipment
             </p>
           </div>
 
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div
-              class="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 border border-purple-100">
-              <div class="absolute -top-3 -left-3 w-6 h-6 bg-purple-500 rounded-full"></div>
-              <div class="absolute -bottom-3 -right-3 w-6 h-6 bg-purple-500 rounded-full"></div>
-
-              <div class="relative z-10">
-                <div class="flex items-center mb-4">
-                  <div
-                    class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mr-4 group-hover:bg-purple-200 transition-colors duration-300">
-                    <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                    </svg>
-                  </div>
-                  <h3
-                    class="text-2xl font-bold text-gray-800 group-hover:text-purple-600 transition-colors duration-300">
-                    Isopropyl Alcohol (IPA) Production
-                  </h3>
-                </div>
-
-                <p class="text-gray-600 mb-6 leading-relaxed">
-                  Utilizing state-of-the-art technology for IPA production based on direct hydration of propylene
-                  with water over a solid catalytic bed, offering significant environmental advantages and unique
-                  benefits.
-                </p>
-
-                <div class="space-y-3">
-                  <div v-for="feature in ipaFeatures" :key="feature" class="flex items-center group/feature">
-                    <div
-                      class="w-2 h-2 bg-purple-500 rounded-full mr-3 group-hover/feature:scale-150 transition-transform duration-300">
-                    </div>
-                    <span class="text-gray-700 font-medium">{{ feature }}</span>
-                  </div>
-                </div>
-
-                <div class="mt-6 p-4 bg-purple-50 rounded-xl border border-purple-100">
-                  <div class="flex items-center text-sm text-purple-700">
-                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd"
-                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                        clip-rule="evenodd" />
-                    </svg>
-                    Successfully built a reactor as licensed equipment for a 40,000-ton/yr unit
-                  </div>
-                </div>
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div v-for="(equipment, index) in fabricationCapabilities" :key="equipment"
+              class="bg-white p-4 rounded-xl text-center shadow-md hover:shadow-lg border border-blue-100 transition-all duration-300 transform hover:-translate-y-1 group equipment-item"
+              :class="{ 'animate-equipment-in': isFabricationVisible }"
+              :style="`animation-delay: ${400 + index * 50}ms`">
+              <div
+                class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3 group-hover:bg-blue-600 transition-colors duration-300 equipment-icon">
+                <svg class="w-5 h-5 text-blue-600 group-hover:text-white transition-colors duration-300" fill="none"
+                  stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                </svg>
               </div>
-            </div>
-
-            <div
-              class="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 border border-green-100">
-              <div class="absolute -top-3 -left-3 w-6 h-6 bg-green-500 rounded-full"></div>
-              <div class="absolute -bottom-3 -right-3 w-6 h-6 bg-green-500 rounded-full"></div>
-
-              <div class="relative z-10">
-                <div class="flex items-center mb-4">
-                  <div
-                    class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mr-4 group-hover:bg-green-200 transition-colors duration-300">
-                    <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                  </div>
-                  <h3
-                    class="text-2xl font-bold text-gray-800 group-hover:text-green-600 transition-colors duration-300">
-                    2-Ethylhexanol (2EH) Production
-                  </h3>
-                </div>
-
-                <p class="text-gray-600 mb-6 leading-relaxed">
-                  Advanced technology based on low-pressure hydroformylation of propylene with synthesis gas
-                  generated on-site, converting butyl-aldehydes into 2-ethylhexanol, normal butanol, and iso-buthanol.
-                </p>
-
-                <div class="space-y-3">
-                  <div v-for="feature in ehFeatures" :key="feature" class="flex items-center group/feature">
-                    <div
-                      class="w-2 h-2 bg-green-500 rounded-full mr-3 group-hover/feature:scale-150 transition-transform duration-300">
-                    </div>
-                    <span class="text-gray-700 font-medium">{{ feature }}</span>
-                  </div>
-                </div>
-
-                <div class="mt-6 p-4 bg-green-50 rounded-xl border border-green-100">
-                  <div class="flex items-center text-sm text-green-700">
-                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd"
-                        d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clip-rule="evenodd" />
-                    </svg>
-                    Proven technology with high efficiency and exceptional yield rates
-                  </div>
-                </div>
-              </div>
+              <p
+                class="text-gray-700 font-medium text-sm group-hover:text-blue-600 transition-colors duration-300 equipment-name">
+                {{ equipment }}
+              </p>
             </div>
           </div>
-        </section>
+        </div>
+      </div>
+    </section>
+
+    <!-- Global Presence -->
+    <section ref="globalSection"
+      class="section-padding bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 text-white relative overflow-hidden global-section">
+      <div class="absolute inset-0 bg-world-map opacity-5"></div>
+      <div
+        class="absolute top-0 right-0 w-64 h-64 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-float">
+      </div>
+
+      <div class="container-custom relative z-10 mt-20">
+        <div class="text-center mb-16 global-header" :class="{ 'animate-global-header': isGlobalVisible }">
+          <h2 class="text-4xl md:text-5xl font-bold mb-4">Worldwide Presence</h2>
+          <p class="text-xl text-blue-200 max-w-2xl mx-auto">
+            Delivering excellence across continents with local expertise and global standards
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div v-for="(region, index) in globalRegions" :key="region.name" class="group relative region-item"
+            :class="{ 'animate-region-in': isGlobalVisible }" :style="`animation-delay: ${500 + index * 150}ms`">
+            <div class="relative">
+              <div
+                class="w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:from-blue-400 group-hover:to-blue-500 transition-all duration-500 transform group-hover:scale-110 shadow-lg group-hover:shadow-xl region-icon">
+                <svg class="w-12 h-12 text-white transform group-hover:scale-110 transition-transform duration-500"
+                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div
+                class="absolute inset-0 rounded-full border-2 border-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-ping">
+              </div>
+            </div>
+            <h3 class="text-2xl font-bold mb-2 group-hover:text-blue-300 transition-colors duration-300 region-name">
+              {{ region.name }}
+            </h3>
+            <div class="text-3xl font-bold text-blue-300 mb-1 region-projects">{{ region.projects }}+</div>
+            <p class="text-blue-200 text-sm region-label">Successful Projects</p>
+          </div>
+        </div>
+
+        <!-- Stats Bar -->
+        <div class="mt-16 bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 global-stats"
+          :class="{ 'animate-stats-in': isGlobalVisible }">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div v-for="(stat, index) in globalStats" :key="stat.label" class="group stat-item"
+              :class="{ 'animate-stat-item-in': isGlobalVisible }" :style="`animation-delay: ${800 + index * 100}ms`">
+              <div
+                class="text-3xl md:text-4xl font-bold text-white mb-2 group-hover:text-blue-300 transition-colors duration-300 stat-value">
+                {{ stat.value }}
+              </div>
+              <div class="text-blue-200 text-sm font-semibold stat-label">{{ stat.label }}</div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </div>
 </template>
 
 <script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
+
 useSeoMeta({
-  title: 'Services - NextOil & Energy',
-  description: 'Comprehensive engineering, procurement, construction, and technology services for the energy industry.'
+  title: 'Projects - NextOil & Energy',
+  description: 'Explore our successful projects and global experience in oil & gas, petrochemical, and energy sectors.'
 })
 
-const whyChooseUs = [
-  'World-class engineering expertise with 25+ years average experience',
-  'Global project delivery across 15+ countries',
-  'Innovative technology solutions and proprietary processes',
-  'End-to-end project lifecycle management',
-  'Strong financial and technological resources',
-  'Commitment to safety, quality, and environmental standards'
+// Refs for sections
+const headerSection = ref(null)
+const projectsSection = ref(null)
+const experienceSection = ref(null)
+const fabricationSection = ref(null)
+const globalSection = ref(null)
+
+// Visibility states
+const isHeaderVisible = ref(false)
+const isProjectsVisible = ref(false)
+const isExperienceVisible = ref(false)
+const isFabricationVisible = ref(false)
+const isGlobalVisible = ref(false)
+
+// Data
+const headerStats = [
+  { text: '50+ Successful Projects' },
+  { text: '15+ Countries' }
 ]
 
-const services = [
+const featuredProjects = [
   {
-    title: 'Project Studies & Consultancy',
-    description: 'Comprehensive feasibility studies and expert consultancy services for optimal project planning and execution.',
-    icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
-    items: ['Feasibility Studies', 'Technical Consultancy', 'Project Planning', 'Risk Assessment', 'Economic Analysis']
+    title: 'Isopropyl Alcohol Plant',
+    description: 'Successful development of a 40,000 tons/year IPA production facility using advanced catalytic technology with significant environmental advantages.',
+    image: '/images/hero-1.jpg',
+    tags: ['Chemical Processing', '40,000 T/Y', 'Catalytic Technology'],
+    capacity: '40K T/Y',
+    duration: '18 Months',
+    year: '2023'
   },
   {
-    title: 'Engineering Services',
-    description: 'End-to-end engineering solutions from concept to detailed design with cutting-edge technology.',
-    icon: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z',
-    items: ['Basic Engineering', 'FEED Studies', 'Detailed Engineering', 'Process Design', '3D Modeling']
+    title: 'Refinery Complex',
+    description: 'Complete design and installation of multiple refinery units including reforming, isomerization, and hydrogen production facilities.',
+    image: '/images/hero-1.jpg',
+    tags: ['Refinery', 'Multiple Units', 'EPC', 'Hydrogen'],
+    capacity: 'Multi-Unit',
+    duration: '36 Months',
+    year: '2022'
   },
   {
-    title: 'Procurement & Installation',
-    description: 'Complete equipment sourcing, fabrication, and installation services with quality assurance.',
-    icon: 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10',
-    items: ['Equipment Sourcing', 'Fabrication', 'Installation', 'Quality Control', 'Logistics Management']
+    title: '2-Ethylhexanol Production',
+    description: 'Design and installation of 65,000 tons/year unit producing 2EH, normal butanol, and isobutanol using low-pressure hydroformylation.',
+    image: '/images/hero-1.jpg',
+    tags: ['Chemical', '65,000 T/Y', 'Innovation', 'LP Process'],
+    capacity: '65K T/Y',
+    duration: '24 Months',
+    year: '2023'
   },
   {
-    title: 'Facilities Development',
-    description: 'Complete development of oil, gas, and petrochemical facilities with integrated solutions.',
-    icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2-2H5a2 2 0 00-2 2v16a2 2 0 002 2h14a2 2 0 002-2zM9 21V7h6v14',
-    items: ['Oil & Gas Facilities', 'Petrochemical Plants', 'Production Units', 'Storage Facilities', 'Utilities']
-  },
-  {
-    title: 'Pipeline Construction',
-    description: 'Professional pipeline and flowline installation and maintenance services worldwide.',
-    icon: 'M13 10V3L4 14h7v7l9-11h-7z',
-    items: ['Pipeline Installation', 'Flowline Construction', 'Maintenance', 'Repair Services', 'Integrity Management']
-  },
-  {
-    title: 'Environmental Solutions',
-    description: 'Sustainable and regulatory-compliant environmental protection and waste management.',
-    icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
-    items: ['Waste Management', 'Environmental Protection', 'Compliance Solutions', 'Sustainability', 'Emission Control']
+    title: 'Butane Distillation Unit',
+    description: 'Complete butane distillation facility with spherical storage tanks and supporting infrastructure for optimal operational efficiency.',
+    image: '/images/hero-1.jpg',
+    tags: ['Distillation', 'Storage', 'Infrastructure', 'Processing'],
+    capacity: 'Custom',
+    duration: '14 Months',
+    year: '2022'
   }
 ]
 
-const ipaFeatures = [
-  'Direct hydration of propylene with water over solid catalytic bed',
-  '40,000-ton/yr unit capacity with proven technology',
-  'Significant environmental advantages and unique benefits',
-  'Exclusive European catalyst supply partnership',
-  'Extensive laboratory and pilot-scale testing completed'
+const companyExperiences = [
+  {
+    title: 'Isopropyl Alcohol Plant',
+    description: 'Successful development with annual capacity of 40,000 tons/year using proprietary catalytic technology'
+  },
+  {
+    title: '2-Ethylhexanol Production Unit',
+    description: 'Design, manufacturing and complete installation under registered license for multiple alcohol production'
+  },
+  {
+    title: 'Butane Distillation Unit',
+    description: 'Complete design, manufacturing, installation and operation with spherical tanks and advanced control systems'
+  },
+  {
+    title: 'Refinery Complex',
+    description: 'Multiple units including reforming, isomerization, and hydrogen production with integrated process control',
+    capacities: [
+      '270,000 T/Y Reforming Unit',
+      '120,000 T/Y Isomerization Unit',
+      '450,000 T/Y Naphtha Desulfurization',
+      '100,000 T/Y DPG Hydrogenation',
+      '750 m³/h Hydrogen Package'
+    ]
+  },
+  {
+    title: 'Sodium Bicarbonate Unit',
+    description: 'Specialized chemical production facility with advanced purification and packaging systems'
+  },
+  {
+    title: 'Storage Tank Construction',
+    description: 'Multiple spherical and storage tank projects with advanced safety and monitoring systems'
+  }
 ]
 
-const ehFeatures = [
-  'Low-pressure hydroformylation of propylene technology',
-  'On-site synthesis gas generation',
-  'Multiple product output: 2EH, normal butanol, iso-buthanol',
-  'State-of-the-art process control systems',
-  'High efficiency and exceptional yield rates'
+const fabricationCapabilities = [
+  'Air-cooled Heat Exchangers',
+  'Shell & Tube Exchangers',
+  'Pressure Vessels',
+  'Storage Tanks',
+  'Reactors',
+  'Spherical Tanks',
+  'Distillation Towers',
+  'Steel Structures',
+  'Finned Tubes',
+  'Tower Internals',
+  'Vacuum Systems',
+  'Flare Systems'
 ]
+
+const globalRegions = [
+  { name: 'Middle East', projects: 25 },
+  { name: 'Central Asia', projects: 15 },
+  { name: 'Africa', projects: 12 },
+  { name: 'Canada', projects: 8 }
+]
+
+const globalStats = [
+  { value: '50+', label: 'Total Projects' },
+  { value: '15+', label: 'Countries' },
+  { value: '25+', label: 'Years Experience' },
+  { value: '99%', label: 'Success Rate' }
+]
+
+// Intersection Observer for scroll animations
+let observers = []
+
+const createObserver = (element, callback, threshold = 0.1) => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          callback(true)
+        }
+      })
+    },
+    { threshold, rootMargin: '-50px 0px -50px 0px' }
+  )
+
+  if (element.value) {
+    observer.observe(element.value)
+  }
+
+  observers.push(observer)
+  return observer
+}
+
+onMounted(() => {
+  // Trigger header animation immediately
+  setTimeout(() => {
+    isHeaderVisible.value = true
+  }, 100)
+
+  // Create observers for other sections
+  createObserver(projectsSection, (visible) => {
+    if (visible) isProjectsVisible.value = true
+  }, 0.1)
+
+  createObserver(experienceSection, (visible) => {
+    if (visible) isExperienceVisible.value = true
+  }, 0.1)
+
+  createObserver(fabricationSection, (visible) => {
+    if (visible) isFabricationVisible.value = true
+  }, 0.2)
+
+  createObserver(globalSection, (visible) => {
+    if (visible) isGlobalVisible.value = true
+  }, 0.1)
+})
+
+onUnmounted(() => {
+  observers.forEach(observer => observer.disconnect())
+})
 </script>
 
 <style scoped>
+/* Animation Delays */
 .animation-delay-2000 {
-  animation-delay: 2s;
+  animation-delay: 2000ms;
 }
 
-.animation-delay-1000 {
-  animation-delay: 1s;
+/* Header Animations */
+.section-title {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.section-subtitle {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.header-stat-item {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.animate-title-in {
+  animation: titleSlideIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-subtitle-in {
+  animation: subtitleSlideIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards 0.3s;
+}
+
+.animate-stat-in {
+  animation: statSlideIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Projects Section Animations */
+.projects-header {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.project-card {
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+}
+
+.project-badge {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.project-tag {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.animate-projects-header {
+  animation: projectsHeaderIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-project-in {
+  animation: projectCardIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-badge-in {
+  animation: badgePopIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-tag-in {
+  animation: tagSlideIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Experience Section Animations */
+.experience-header {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.experience-card {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.capacity-item {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+.animate-experience-header {
+  animation: experienceHeaderIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-experience-in {
+  animation: experienceCardIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-capacity-in {
+  animation: capacitySlideIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Fabrication Section Animations */
+.fabrication-header {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.equipment-item {
+  opacity: 0;
+  transform: translateY(20px) scale(0.9);
+}
+
+.animate-fabrication-header {
+  animation: fabricationHeaderIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-equipment-in {
+  animation: equipmentPopIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Global Section Animations */
+.global-header {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.region-item {
+  opacity: 0;
+  transform: translateY(30px) scale(0.9);
+}
+
+.global-stats {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.stat-item {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.animate-global-header {
+  animation: globalHeaderIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-region-in {
+  animation: regionCardIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-stats-in {
+  animation: statsSlideIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-stat-item-in {
+  animation: statItemIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Keyframe Animations */
+@keyframes titleSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes subtitleSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes statSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes projectsHeaderIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes projectCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes badgePopIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes tagSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes experienceHeaderIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes experienceCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes capacitySlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fabricationHeaderIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes equipmentPopIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes globalHeaderIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes regionCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes statsSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes statItemIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Floating Background Animations */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+
+  50% {
+    transform: translateY(-20px) scale(1.05);
+  }
+}
+
+@keyframes float-slow {
+
+  0%,
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+
+  50% {
+    transform: translateY(-30px) scale(1.1);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+/* Enhanced Hover Effects */
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-lift:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
+}
+
+.magic-text {
+  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #1d4ed8 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Smooth Transitions */
+.transition-all {
+  transition-property: all;
+}
+
+.duration-300 {
+  transition-duration: 300ms;
+}
+
+.duration-500 {
+  transition-duration: 500ms;
+}
+
+.duration-700 {
+  transition-duration: 700ms;
+}
+
+/* Enhanced styling */
+.rounded-2xl {
+  border-radius: 1rem;
+}
+
+.shadow-2xl {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Backdrop blur enhancement */
+.backdrop-blur-sm {
+  backdrop-filter: blur(12px);
+}
+
+/* Group hover effects */
+.group:hover .group-hover\:text-blue-600 {
+  color: #2563eb;
+}
+
+.group:hover .group-hover\:text-blue-300 {
+  color: #93c5fd;
+}
+
+.group:hover .group-hover\:opacity-100 {
+  opacity: 1;
+}
+
+/* World map background */
+.bg-world-map {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%23ffffff' fill-opacity='0.1' d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+/* Performance optimizations */
+* {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
 }
 </style>

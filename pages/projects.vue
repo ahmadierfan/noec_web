@@ -1,39 +1,37 @@
 <template>
   <div>
     <!-- Page Header -->
-    <section class="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white py-20 overflow-hidden">
+    <section ref="headerSection"
+      class="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white py-20 overflow-hidden">
       <div class="absolute inset-0 bg-black bg-opacity-20"></div>
       <div
-        class="absolute top-0 left-0 w-72 h-72 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse">
+        class="absolute top-0 left-0 w-72 h-72 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float-slow">
       </div>
       <div
-        class="absolute bottom-0 right-0 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse animation-delay-2000">
+        class="absolute bottom-0 right-0 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float animation-delay-2000">
       </div>
 
       <div class="container mx-auto px-4 relative z-10">
         <div class="max-w-3xl">
-          <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-            Our <span class="text-blue-300">Projects</span>
+          <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight section-title"
+            :class="{ 'animate-title-in': isHeaderVisible }">
+            Our <span class="text-blue-300 magic-text">Projects</span>
           </h1>
-          <p class="text-xl md:text-2xl text-blue-100 mb-8 leading-relaxed">
+          <p class="text-xl md:text-2xl text-blue-100 mb-8 leading-relaxed section-subtitle"
+            :class="{ 'animate-subtitle-in': isHeaderVisible }">
             Pioneering energy solutions across global markets with innovation and excellence
           </p>
           <div class="flex items-center space-x-4 text-blue-200">
-            <div class="flex items-center">
-              <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clip-rule="evenodd" />
-              </svg>
-              <span>50+ Successful Projects</span>
-            </div>
-            <div class="flex items-center">
-              <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clip-rule="evenodd" />
-              </svg>
-              <span>15+ Countries</span>
+            <div v-for="(stat, index) in headerStats" :key="stat.text" class="header-stat-item"
+              :class="{ 'animate-stat-in': isHeaderVisible }" :style="`animation-delay: ${500 + index * 150}ms`">
+              <div class="flex items-center">
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd" />
+                </svg>
+                <span>{{ stat.text }}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -41,9 +39,9 @@
     </section>
 
     <!-- Featured Projects -->
-    <section class="section-padding bg-white">
+    <section ref="projectsSection" class="section-padding bg-white projects-section">
       <div class="container-custom">
-        <div class="text-center mb-16">
+        <div class="text-center mb-16 projects-header" :class="{ 'animate-projects-header': isProjectsVisible }">
           <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4 mt-20">Engineering Excellence</h2>
           <p class="text-xl text-gray-600 max-w-2xl mx-auto">
             Showcasing our most innovative and complex energy projects that demonstrate our technical capabilities
@@ -52,9 +50,10 @@
 
         <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 mb-20">
           <div v-for="(project, index) in featuredProjects" :key="project.title"
-            class="m-10 group relative bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2"
-            :style="`animation-delay: ${index * 200}ms`">
-            <div class="absolute top-4 right-4 z-20">
+            class="m-10 group relative bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 project-card"
+            :class="{ 'animate-project-in': isProjectsVisible }" :style="`animation-delay: ${400 + index * 200}ms`">
+            <div class="absolute top-4 right-4 z-20 project-badge" :class="{ 'animate-badge-in': isProjectsVisible }"
+              :style="`animation-delay: ${600 + index * 200}ms`">
               <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
                 {{ project.tags[0] }}
               </span>
@@ -69,7 +68,7 @@
 
               <!-- Project Stats Overlay -->
               <div
-                class="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                class="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0 project-stats">
                 <div class="flex space-x-4 text-white">
                   <div class="text-center">
                     <div class="text-2xl font-bold">{{ project.capacity }}</div>
@@ -85,20 +84,22 @@
 
             <div class="p-8">
               <h3
-                class="text-2xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors duration-300">
+                class="text-2xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors duration-300 project-title">
                 {{ project.title }}
               </h3>
-              <p class="text-gray-600 mb-6 leading-relaxed">{{ project.description }}</p>
+              <p class="text-gray-600 mb-6 leading-relaxed project-description">{{ project.description }}</p>
 
-              <div class="flex flex-wrap gap-2 mb-6">
-                <span v-for="tag in project.tags" :key="tag"
-                  class="bg-gray-100 text-gray-700 px-3 py-1.5 rounded-full text-sm font-medium hover:bg-blue-100 hover:text-blue-700 transition-all duration-300 cursor-default">
+              <div class="flex flex-wrap gap-2 mb-6 project-tags">
+                <span v-for="(tag, tagIndex) in project.tags" :key="tag"
+                  class="bg-gray-100 text-gray-700 px-3 py-1.5 rounded-full text-sm font-medium hover:bg-blue-100 hover:text-blue-700 transition-all duration-300 cursor-default project-tag"
+                  :class="{ 'animate-tag-in': isProjectsVisible }"
+                  :style="`animation-delay: ${800 + index * 200 + tagIndex * 50}ms`">
                   {{ tag }}
                 </span>
               </div>
 
-              <div class="flex items-center justify-between pt-4 border-t border-gray-100">
-                <div class="flex items-center text-gray-500 text-sm">
+              <div class="flex items-center justify-between pt-4 border-t border-gray-100 project-footer">
+                <div class="flex items-center text-gray-500 text-sm project-year">
                   <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd"
                       d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
@@ -107,7 +108,7 @@
                   Completed {{ project.year }}
                 </div>
                 <button
-                  class="flex items-center text-blue-600 font-semibold hover:text-blue-700 transition-colors duration-300 group/btn">
+                  class="flex items-center text-blue-600 font-semibold hover:text-blue-700 transition-colors duration-300 group/btn project-button">
                   View Details
                   <svg class="w-4 h-4 ml-2 transform group-hover/btn:translate-x-1 transition-transform duration-300"
                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -120,8 +121,9 @@
         </div>
 
         <!-- Company Experience -->
-        <div class="mb-20">
-          <div class="text-center mb-12 mt-10">
+        <div ref="experienceSection" class="mb-20 experience-section">
+          <div class="text-center mb-12 mt-10 experience-header"
+            :class="{ 'animate-experience-header': isExperienceVisible }">
             <h3 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Company Experience</h3>
             <p class="text-xl text-gray-600 max-w-2xl mx-auto">
               Decades of successful project delivery across diverse energy sectors
@@ -130,10 +132,11 @@
 
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div v-for="(experience, index) in companyExperiences" :key="experience.title"
-              class="bg-gradient-to-br from-white to-gray-50 p-6 m-2 rounded-xl shadow-lg hover:shadow-xl border border-gray-100 transition-all duration-500 transform hover:-translate-y-1 group"
-              :style="`animation-delay: ${index * 100}ms`">
+              class="bg-gradient-to-br from-white to-gray-50 p-6 m-2 rounded-xl shadow-lg hover:shadow-xl border border-gray-100 transition-all duration-500 transform hover:-translate-y-1 group experience-card"
+              :class="{ 'animate-experience-in': isExperienceVisible }"
+              :style="`animation-delay: ${300 + index * 100}ms`">
               <div
-                class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-600 transition-colors duration-300">
+                class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-600 transition-colors duration-300 experience-icon">
                 <svg class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" fill="none"
                   stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -141,12 +144,13 @@
                 </svg>
               </div>
 
-              <h4 class="text-lg font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors duration-300">
+              <h4
+                class="text-lg font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors duration-300 experience-title">
                 {{ experience.title }}
               </h4>
-              <p class="text-gray-600 mb-4 leading-relaxed">{{ experience.description }}</p>
+              <p class="text-gray-600 mb-4 leading-relaxed experience-description">{{ experience.description }}</p>
 
-              <div v-if="experience.capacities" class="mt-4">
+              <div v-if="experience.capacities" class="mt-4 experience-capacities">
                 <p class="text-sm font-semibold text-gray-700 mb-3 flex items-center">
                   <svg class="w-4 h-4 mr-2 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd"
@@ -156,8 +160,10 @@
                   Key Capacities:
                 </p>
                 <ul class="text-sm text-gray-600 space-y-2">
-                  <li v-for="capacity in experience.capacities" :key="capacity"
-                    class="flex items-center hover:text-blue-600 transition-colors duration-300">
+                  <li v-for="(capacity, capacityIndex) in experience.capacities" :key="capacity"
+                    class="flex items-center hover:text-blue-600 transition-colors duration-300 capacity-item"
+                    :class="{ 'animate-capacity-in': isExperienceVisible }"
+                    :style="`animation-delay: ${500 + index * 100 + capacityIndex * 50}ms`">
                     <svg class="w-3 h-3 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fill-rule="evenodd"
                         d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -172,8 +178,10 @@
         </div>
 
         <!-- Fabrication Capabilities -->
-        <div class="bg-gradient-to-r from-blue-50 mb-20 to-indigo-50 rounded-2xl p-8 md:p-12 shadow-inner">
-          <div class="text-center mb-20 mt-20">
+        <div ref="fabricationSection"
+          class="bg-gradient-to-r from-blue-50 mb-20 to-indigo-50 rounded-2xl p-8 md:p-12 shadow-inner fabrication-section">
+          <div class="text-center mb-20 mt-20 fabrication-header"
+            :class="{ 'animate-fabrication-header': isFabricationVisible }">
             <h3 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Equipment Fabrication Capabilities</h3>
             <p class="text-xl text-gray-600 max-w-2xl mx-auto">
               State-of-the-art manufacturing facilities for custom industrial equipment
@@ -182,16 +190,19 @@
 
           <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             <div v-for="(equipment, index) in fabricationCapabilities" :key="equipment"
-              class="bg-white p-4 rounded-xl text-center shadow-md hover:shadow-lg border border-blue-100 transition-all duration-300 transform hover:-translate-y-1 group">
+              class="bg-white p-4 rounded-xl text-center shadow-md hover:shadow-lg border border-blue-100 transition-all duration-300 transform hover:-translate-y-1 group equipment-item"
+              :class="{ 'animate-equipment-in': isFabricationVisible }"
+              :style="`animation-delay: ${400 + index * 50}ms`">
               <div
-                class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3 group-hover:bg-blue-600 transition-colors duration-300">
+                class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3 group-hover:bg-blue-600 transition-colors duration-300 equipment-icon">
                 <svg class="w-5 h-5 text-blue-600 group-hover:text-white transition-colors duration-300" fill="none"
                   stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
                 </svg>
               </div>
-              <p class="text-gray-700 font-medium text-sm group-hover:text-blue-600 transition-colors duration-300">
+              <p
+                class="text-gray-700 font-medium text-sm group-hover:text-blue-600 transition-colors duration-300 equipment-name">
                 {{ equipment }}
               </p>
             </div>
@@ -201,15 +212,15 @@
     </section>
 
     <!-- Global Presence -->
-    <section
-      class="section-padding bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 text-white relative overflow-hidden">
+    <section ref="globalSection"
+      class="section-padding bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 text-white relative overflow-hidden global-section">
       <div class="absolute inset-0 bg-world-map opacity-5"></div>
       <div
-        class="absolute top-0 right-0 w-64 h-64 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse">
+        class="absolute top-0 right-0 w-64 h-64 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-float">
       </div>
 
       <div class="container-custom relative z-10 mt-20">
-        <div class="text-center mb-16">
+        <div class="text-center mb-16 global-header" :class="{ 'animate-global-header': isGlobalVisible }">
           <h2 class="text-4xl md:text-5xl font-bold mb-4">Worldwide Presence</h2>
           <p class="text-xl text-blue-200 max-w-2xl mx-auto">
             Delivering excellence across continents with local expertise and global standards
@@ -217,10 +228,11 @@
         </div>
 
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          <div v-for="region in globalRegions" :key="region.name" class="group relative">
+          <div v-for="(region, index) in globalRegions" :key="region.name" class="group relative region-item"
+            :class="{ 'animate-region-in': isGlobalVisible }" :style="`animation-delay: ${500 + index * 150}ms`">
             <div class="relative">
               <div
-                class="w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:from-blue-400 group-hover:to-blue-500 transition-all duration-500 transform group-hover:scale-110 shadow-lg group-hover:shadow-xl">
+                class="w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:from-blue-400 group-hover:to-blue-500 transition-all duration-500 transform group-hover:scale-110 shadow-lg group-hover:shadow-xl region-icon">
                 <svg class="w-12 h-12 text-white transform group-hover:scale-110 transition-transform duration-500"
                   fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -231,23 +243,25 @@
                 class="absolute inset-0 rounded-full border-2 border-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-ping">
               </div>
             </div>
-            <h3 class="text-2xl font-bold mb-2 group-hover:text-blue-300 transition-colors duration-300">
+            <h3 class="text-2xl font-bold mb-2 group-hover:text-blue-300 transition-colors duration-300 region-name">
               {{ region.name }}
             </h3>
-            <div class="text-3xl font-bold text-blue-300 mb-1">{{ region.projects }}+</div>
-            <p class="text-blue-200 text-sm">Successful Projects</p>
+            <div class="text-3xl font-bold text-blue-300 mb-1 region-projects">{{ region.projects }}+</div>
+            <p class="text-blue-200 text-sm region-label">Successful Projects</p>
           </div>
         </div>
 
         <!-- Stats Bar -->
-        <div class="mt-16 bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+        <div class="mt-16 bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 global-stats"
+          :class="{ 'animate-stats-in': isGlobalVisible }">
           <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div v-for="stat in globalStats" :key="stat.label" class="group">
+            <div v-for="(stat, index) in globalStats" :key="stat.label" class="group stat-item"
+              :class="{ 'animate-stat-item-in': isGlobalVisible }" :style="`animation-delay: ${800 + index * 100}ms`">
               <div
-                class="text-3xl md:text-4xl font-bold text-white mb-2 group-hover:text-blue-300 transition-colors duration-300">
+                class="text-3xl md:text-4xl font-bold text-white mb-2 group-hover:text-blue-300 transition-colors duration-300 stat-value">
                 {{ stat.value }}
               </div>
-              <div class="text-blue-200 text-sm font-semibold">{{ stat.label }}</div>
+              <div class="text-blue-200 text-sm font-semibold stat-label">{{ stat.label }}</div>
             </div>
           </div>
         </div>
@@ -257,10 +271,32 @@
 </template>
 
 <script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
+
 useSeoMeta({
   title: 'Projects - NextOil & Energy',
   description: 'Explore our successful projects and global experience in oil & gas, petrochemical, and energy sectors.'
 })
+
+// Refs for sections
+const headerSection = ref(null)
+const projectsSection = ref(null)
+const experienceSection = ref(null)
+const fabricationSection = ref(null)
+const globalSection = ref(null)
+
+// Visibility states
+const isHeaderVisible = ref(false)
+const isProjectsVisible = ref(false)
+const isExperienceVisible = ref(false)
+const isFabricationVisible = ref(false)
+const isGlobalVisible = ref(false)
+
+// Data
+const headerStats = [
+  { text: '50+ Successful Projects' },
+  { text: '15+ Countries' }
+]
 
 const featuredProjects = [
   {
@@ -363,14 +399,532 @@ const globalStats = [
   { value: '25+', label: 'Years Experience' },
   { value: '99%', label: 'Success Rate' }
 ]
+
+// Intersection Observer for scroll animations
+let observers = []
+
+const createObserver = (element, callback, threshold = 0.1) => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          callback(true)
+        }
+      })
+    },
+    { threshold, rootMargin: '-50px 0px -50px 0px' }
+  )
+
+  if (element.value) {
+    observer.observe(element.value)
+  }
+
+  observers.push(observer)
+  return observer
+}
+
+onMounted(() => {
+  // Trigger header animation immediately
+  setTimeout(() => {
+    isHeaderVisible.value = true
+  }, 100)
+
+  // Create observers for other sections
+  createObserver(projectsSection, (visible) => {
+    if (visible) isProjectsVisible.value = true
+  }, 0.1)
+
+  createObserver(experienceSection, (visible) => {
+    if (visible) isExperienceVisible.value = true
+  }, 0.1)
+
+  createObserver(fabricationSection, (visible) => {
+    if (visible) isFabricationVisible.value = true
+  }, 0.2)
+
+  createObserver(globalSection, (visible) => {
+    if (visible) isGlobalVisible.value = true
+  }, 0.1)
+})
+
+onUnmounted(() => {
+  observers.forEach(observer => observer.disconnect())
+})
 </script>
 
 <style scoped>
+/* Animation Delays */
 .animation-delay-2000 {
-  animation-delay: 2s;
+  animation-delay: 2000ms;
 }
 
+/* Header Animations */
+.section-title {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.section-subtitle {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.header-stat-item {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.animate-title-in {
+  animation: titleSlideIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-subtitle-in {
+  animation: subtitleSlideIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards 0.3s;
+}
+
+.animate-stat-in {
+  animation: statSlideIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Projects Section Animations */
+.projects-header {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.project-card {
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+}
+
+.project-badge {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.project-tag {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.animate-projects-header {
+  animation: projectsHeaderIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-project-in {
+  animation: projectCardIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-badge-in {
+  animation: badgePopIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-tag-in {
+  animation: tagSlideIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Experience Section Animations */
+.experience-header {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.experience-card {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.capacity-item {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+.animate-experience-header {
+  animation: experienceHeaderIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-experience-in {
+  animation: experienceCardIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-capacity-in {
+  animation: capacitySlideIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Fabrication Section Animations */
+.fabrication-header {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.equipment-item {
+  opacity: 0;
+  transform: translateY(20px) scale(0.9);
+}
+
+.animate-fabrication-header {
+  animation: fabricationHeaderIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-equipment-in {
+  animation: equipmentPopIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Global Section Animations */
+.global-header {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.region-item {
+  opacity: 0;
+  transform: translateY(30px) scale(0.9);
+}
+
+.global-stats {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.stat-item {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.animate-global-header {
+  animation: globalHeaderIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-region-in {
+  animation: regionCardIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-stats-in {
+  animation: statsSlideIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-stat-item-in {
+  animation: statItemIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Keyframe Animations */
+@keyframes titleSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes subtitleSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes statSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes projectsHeaderIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes projectCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes badgePopIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes tagSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes experienceHeaderIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes experienceCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes capacitySlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fabricationHeaderIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes equipmentPopIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes globalHeaderIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes regionCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes statsSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes statItemIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Floating Background Animations */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+
+  50% {
+    transform: translateY(-20px) scale(1.05);
+  }
+}
+
+@keyframes float-slow {
+
+  0%,
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+
+  50% {
+    transform: translateY(-30px) scale(1.1);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+/* Enhanced Hover Effects */
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-lift:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
+}
+
+.magic-text {
+  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #1d4ed8 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Smooth Transitions */
+.transition-all {
+  transition-property: all;
+}
+
+.duration-300 {
+  transition-duration: 300ms;
+}
+
+.duration-500 {
+  transition-duration: 500ms;
+}
+
+.duration-700 {
+  transition-duration: 700ms;
+}
+
+/* Enhanced styling */
+.rounded-2xl {
+  border-radius: 1rem;
+}
+
+.shadow-2xl {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Backdrop blur enhancement */
+.backdrop-blur-sm {
+  backdrop-filter: blur(12px);
+}
+
+/* Group hover effects */
+.group:hover .group-hover\:text-blue-600 {
+  color: #2563eb;
+}
+
+.group:hover .group-hover\:text-blue-300 {
+  color: #93c5fd;
+}
+
+.group:hover .group-hover\:opacity-100 {
+  opacity: 1;
+}
+
+/* World map background */
 .bg-world-map {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%23ffffff' fill-opacity='0.1' d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+/* Performance optimizations */
+* {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
 }
 </style>
