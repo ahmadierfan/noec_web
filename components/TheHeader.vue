@@ -92,7 +92,7 @@ const navigation = [
   { name: 'Home', href: '/' },
   { name: 'About Us', href: '/about' },
   { name: 'Services', href: '/services' },
-  { name: 'Facrication', href: '/facrication' },
+  { name: 'Fabrication', href: '/Fabrication' },
   { name: 'Experience', href: '/projects' },
   { name: 'Leadership', href: '/leadership' },
   { name: 'Contact', href: '/contact' }
