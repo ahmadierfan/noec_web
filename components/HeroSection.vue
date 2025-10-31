@@ -20,7 +20,7 @@
             'opacity-100': !showVideo,
             'opacity-0': showVideo
         }">
-            <img src="/images/hero-1.jpg" alt="NextOil & Energy Global Operations"
+            <img src="/images/hero-1.jpg?1" alt="NextOil & Energy Global Operations"
                 class="w-full h-full object-cover transition-all duration-2000" :class="{
                     'scale-110 blur-sm': !isLoaded,
                     'scale-100 blur-0': isLoaded
