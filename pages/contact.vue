@@ -186,7 +186,7 @@
                         Company Profile
                       </h3>
                       <p class="text-gray-600 leading-relaxed info-description">
-                        NextOil & Energy Ltd. is a subsidiary of JTA International Investment Holding (Apex),
+                        NextOil & Energy Ltd. is a subsidiary of Apex & JTA International Investment Holding,
                         a Qatar-based investment and execution enterprise with global presence,
                         specializing in innovative energy solutions.
                       </p>
@@ -246,7 +246,7 @@
                               d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z"
                               clip-rule="evenodd" />
                           </svg>
-                          <span class="font-medium">Subsidiary of JTA International Investment Holding & Apex</span>
+                          <span class="font-medium">Subsidiary of Apex & JTA International Investment Holding</span>
                         </div>
                       </div>
                     </div>
@@ -274,7 +274,7 @@
                   <span class="text-blue-200 font-medium">{{ hour.day }}</span>
                   <span class="text-white font-semibold bg-blue-700 px-3 py-1 rounded-full text-sm hour-time">{{
                     hour.time
-                    }}</span>
+                  }}</span>
                 </div>
               </div>
               <div class="mt-6 p-4 bg-blue-800 rounded-xl border border-blue-600 business-note"

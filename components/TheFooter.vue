@@ -6,7 +6,7 @@
         <div class="md:col-span-2">
           <h3 class="text-2xl font-bold mb-4">NextOil & Energy Ltd.</h3>
           <p class="text-gray-300 mb-4">
-            A subsidiary of JTA International Investment Holding & Apex, specializing in project execution
+            A subsidiary of Apex & JTA International Investment Holding , specializing in project execution
             and management for the oil & gas, petrochemical, and power industries.
           </p>
           <div class="text-gray-300">
@@ -32,7 +32,7 @@
         <div>
           <h4 class="text-lg font-semibold mb-4">Contact</h4>
           <div class="text-gray-300 space-y-2">
-            <p>Subsidiary of JTA International Investment Holding & Apex</p>
+            <p>Subsidiary of Apex & JTA International Investment Holding</p>
             <p>Qatar-based Global Enterprise</p>
             <p class="mt-4">✉️ info@noec.qa</p>
           </div>

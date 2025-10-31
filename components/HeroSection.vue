@@ -1,15 +1,31 @@
 <!-- components/home/HeroSection.vue -->
 <template>
     <section class="relative h-screen overflow-hidden">
-        <!-- Clear Background Image with Subtle Overlay -->
-        <div class="absolute inset-0">
+        <!-- Background Video that appears after typing -->
+        <div class="absolute inset-0 transition-all duration-2000" :class="{
+            'opacity-0 scale-110': !showVideo,
+            'opacity-100 scale-100': showVideo
+        }">
+            <video ref="backgroundVideo" muted loop playsinline class="w-full h-full object-cover" preload="metadata">
+                <source src="/videos/hero-background.mp4" type="video/mp4">
+                <!-- Fallback image if video doesn't load -->
+                <img src="/images/hero-1.jpg" alt="NextOil & Energy Global Operations"
+                    class="w-full h-full object-cover" />
+            </video>
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/60"></div>
+        </div>
+
+        <!-- Original Background Image -->
+        <div class="absolute inset-0 transition-all duration-2000" :class="{
+            'opacity-100': !showVideo,
+            'opacity-0': showVideo
+        }">
             <img src="/images/hero-1.jpg" alt="NextOil & Energy Global Operations"
                 class="w-full h-full object-cover transition-all duration-2000" :class="{
                     'scale-110 blur-sm': !isLoaded,
                     'scale-100 blur-0': isLoaded
                 }" @load="onImageLoad" />
-            <div class="absolute inset-0 bg-black transition-all duration-2000"
-                :class="isLoaded ? 'bg-black/40' : 'bg-black/70'"></div>
+
             <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/60 transition-opacity duration-2000"
                 :class="isLoaded ? 'opacity-100' : 'opacity-0'"></div>
         </div>
@@ -29,7 +45,7 @@
                         </span>
                         <br>
                         <span
-                            class="text-3xl md:text-5xl lg:text-6xl text-blue-200 font-light drop-shadow-2xl inline-block transition-all duration-1000 transform"
+                            class="text-3xl md:text-5xl lg:text-6xl text-white drop-shadow-2xl inline-block transition-all duration-1000 transform"
                             :class="{
                                 'translate-y-10 opacity-0': !elementsVisible,
                                 'translate-y-0 opacity-100': elementsVisible
@@ -39,15 +55,12 @@
                     </h1>
                 </div>
 
-                <!-- Subtitle -->
+                <!-- Subtitle with Typing Animation -->
                 <div class="overflow-hidden">
-                    <p class="text-xl md:text-2xl lg:text-3xl text-white mb-8 max-w-4xl mx-auto leading-relaxed drop-shadow-2xl transition-all duration-1000 transform"
-                        :class="{
-                            'translate-y-10 opacity-0': !elementsVisible,
-                            'translate-y-0 opacity-100': elementsVisible
-                        }" style="transition-delay: 600ms">
-                        Pioneering <span class="text-yellow-300 font-semibold">Global Energy Solutions</span> with
-                        Innovation and Excellence
+                    <p
+                        class="text-xl md:text-2xl lg:text-3xl text-white mb-8 max-w-4xl mx-auto leading-relaxed drop-shadow-2xl transition-all duration-1000 min-h-[120px] flex items-center justify-center">
+                        <span ref="typingText" class="typing-container"></span>
+                        <span class="typing-cursor" :class="{ 'hidden': typingComplete }">|</span>
                     </p>
                 </div>
 
@@ -57,20 +70,6 @@
                         'translate-y-10 opacity-0': !elementsVisible,
                         'translate-y-0 opacity-100': elementsVisible
                     }" style="transition-delay: 800ms">
-                    <NuxtLink to="/services"
-                        class="bg-white text-blue-900 px-8 py-4 rounded-xl font-bold text-lg shadow-2xl hover:shadow-3xl transform hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group">
-                        <span class="relative z-10">Explore Our Services</span>
-                        <div
-                            class="absolute inset-0 bg-blue-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left">
-                        </div>
-                    </NuxtLink>
-                    <NuxtLink to="/projects"
-                        class="border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-blue-900 transform hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group">
-                        <span class="relative z-10">View Projects</span>
-                        <div
-                            class="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left">
-                        </div>
-                    </NuxtLink>
                 </div>
             </div>
         </div>
@@ -92,16 +91,90 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, nextTick } from 'vue'
 
 const isLoaded = ref(false)
 const elementsVisible = ref(false)
+const typingText = ref(null)
+const backgroundVideo = ref(null)
+const showVideo = ref(false)
+const typingComplete = ref(false)
+
+const fullText = `Pioneering <span class="text-yellow-300 font-semibold">Global Energy Solutions</span> with Innovation and Excellence`
+let currentText = ''
+let charIndex = 0
+let typingTimer = null
+
+const startTypingAnimation = () => {
+    if (!typingText.value) return
+
+    clearTimeout(typingTimer)
+    currentText = ''
+    charIndex = 0
+    typingComplete.value = false
+
+    const typeChar = () => {
+        if (charIndex < fullText.length) {
+            // Handle HTML tags
+            if (fullText.charAt(charIndex) === '<') {
+                const tagEnd = fullText.indexOf('>', charIndex)
+                if (tagEnd !== -1) {
+                    currentText += fullText.substring(charIndex, tagEnd + 1)
+                    charIndex = tagEnd + 1
+                }
+            } else {
+                currentText += fullText.charAt(charIndex)
+                charIndex++
+            }
+
+            typingText.value.innerHTML = currentText
+
+            // Random typing speed for more natural feel
+            const speed = Math.random() * 50 + 30 // Between 30-80ms
+            typingTimer = setTimeout(typeChar, speed)
+        } else {
+            // Typing completed
+            typingComplete.value = true
+            startVideoBackground()
+        }
+    }
+
+    // Start typing after a short delay
+    typingTimer = setTimeout(typeChar, 500)
+}
+
+const startVideoBackground = async () => {
+    try {
+        // Show video container
+        showVideo.value = true
+
+        // Wait for the transition to start
+        await nextTick()
+
+        // Start playing the video after a short delay for smooth transition
+        setTimeout(() => {
+            if (backgroundVideo.value) {
+                backgroundVideo.value.play().catch(error => {
+                    console.log('Video play failed:', error)
+                    // Fallback to image if video fails to play
+                    showVideo.value = false
+                })
+            }
+        }, 500)
+
+    } catch (error) {
+        console.error('Error starting video background:', error)
+        showVideo.value = false
+    }
+}
 
 const onImageLoad = () => {
     isLoaded.value = true
     // Start element animations after image is loaded
     setTimeout(() => {
         elementsVisible.value = true
+        // Start typing animation after the main title is visible
+        setTimeout(startTypingAnimation, 1000)
     }, 300)
 }
 
@@ -112,6 +185,8 @@ onMounted(() => {
             isLoaded.value = true
             setTimeout(() => {
                 elementsVisible.value = true
+                // Start typing animation after the main title is visible
+                setTimeout(startTypingAnimation, 1000)
             }, 300)
         }
     }, 1000)
@@ -141,8 +216,28 @@ onMounted(() => {
     }
 }
 
+@keyframes blink {
+
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
+}
+
 .animate-float {
     animation: float linear infinite;
+}
+
+.typing-cursor {
+    animation: blink 1s infinite;
+    margin-left: 2px;
+    color: #fbbf24;
+    /* yellow-300 */
 }
 
 /* Smooth transitions for all elements */
@@ -170,5 +265,16 @@ html {
 /* Ensure text is readable over background image */
 .drop-shadow-2xl {
     filter: drop-shadow(0 25px 25px rgb(0 0 0 / 0.5));
+}
+
+/* Typing container styling */
+.typing-container {
+    text-align: center;
+    line-height: 1.6;
+}
+
+/* Video background styling */
+video {
+    filter: brightness(0.9);
 }
 </style>

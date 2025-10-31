@@ -23,7 +23,8 @@
                                 'translate-y-10 opacity-0': !isVisible,
                                 'translate-y-0 opacity-100': isVisible
                             }" style="transition-delay: 200ms">
-                            As a subsidiary of <span class="font-semibold text-blue-700">JTA International Investment
+                            As a subsidiary of <span class="font-semibold text-blue-700">Apex & JTA International
+                                Investment
                                 Holding</span>,
                             we specialize in cutting-edge project execution, technology development, and engineering
                             services
