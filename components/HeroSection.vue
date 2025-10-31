@@ -9,7 +9,7 @@
             <video ref="backgroundVideo" muted loop playsinline class="w-full h-full object-cover" preload="metadata">
                 <source src="/videos/hero-background.mp4" type="video/mp4">
                 <!-- Fallback image if video doesn't load -->
-                <img src="/images/hero-1.jpg" alt="NextOil & Energy Global Operations"
+                <img src="/images/hero-1.jpg?1" alt="NextOil & Energy Global Operations"
                     class="w-full h-full object-cover" />
             </video>
             <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/60"></div>
