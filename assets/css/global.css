@@ -3,3 +3,11 @@ body,
 #__nuxt {
   height: 100%;
 }
+
+.text-brand {
+  color: #1e3a8a;
+}
+
+.background-brand {
+  background-color: #1e3a8a;
+}

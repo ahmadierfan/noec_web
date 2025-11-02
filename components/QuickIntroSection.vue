@@ -12,7 +12,7 @@
                                 'translate-y-10 opacity-0': !isVisible,
                                 'translate-y-0 opacity-100': isVisible
                             }" style="transition-delay: 100ms">
-                            Innovating the Future of <span class="text-blue-600">Energy</span>
+                            Innovating the Future of <span class="text-brand">Energy</span>
                         </h2>
                     </div>
 
@@ -23,7 +23,7 @@
                                 'translate-y-10 opacity-0': !isVisible,
                                 'translate-y-0 opacity-100': isVisible
                             }" style="transition-delay: 200ms">
-                            As a subsidiary of <span class="font-semibold text-blue-700">Apex & JTA International
+                            As a subsidiary of <span class="font-semibold text-brand">Apex & JTA International
                                 Investment
                                 Holding</span>,
                             we specialize in cutting-edge project execution, technology development, and engineering
@@ -42,7 +42,7 @@
                             }" :style="`transition-delay: ${300 + (index * 100)}ms`">
                             <div
                                 class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4 lg:mr-6 flex-shrink-0 transition-all duration-300 group-hover:bg-blue-200 group-hover:scale-110">
-                                <svg class="w-6 h-6 text-blue-600 transition-all duration-300 group-hover:scale-110"
+                                <svg class="w-6 h-6 text-brand transition-all duration-300 group-hover:scale-110"
                                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         :d="feature.icon" />
@@ -50,7 +50,7 @@
                             </div>
                             <div class="flex-1">
                                 <h3
-                                    class="text-xl font-bold text-gray-800 mb-2 lg:mb-3 transition-colors duration-300 group-hover:text-blue-700">
+                                    class="text-xl font-bold text-gray-800 mb-2 lg:mb-3 transition-colors duration-300 group-hover:text-brand">
                                     {{ feature.title }}
                                 </h3>
                                 <p
@@ -68,7 +68,7 @@
                             'translate-y-0 opacity-100': isVisible
                         }" style="transition-delay: 600ms">
                             <NuxtLink to="/about"
-                                class="inline-flex items-center text-blue-600 font-bold text-lg hover:text-blue-700 transition-all duration-300 group">
+                                class="inline-flex items-center text-brand font-bold text-lg hover:text-brand transition-all duration-300 group">
                                 Learn More About Our Vision
                                 <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300"
                                     fill="none" stroke="currentColor" viewBox="0 0 24 24">

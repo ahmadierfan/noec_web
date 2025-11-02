@@ -19,8 +19,8 @@
         <!-- Desktop Menu -->
         <div class="hidden lg:flex items-center space-x-1">
           <NuxtLink v-for="item in navigation" :key="item.name" :to="item.href"
-            class="relative px-4 py-2 text-gray-700 font-medium rounded-lg transition-all duration-300 group hover:text-blue-600"
-            :class="{ 'text-blue-600': $route.path === item.href }">
+            class="relative px-4 py-2 text-gray-700 font-medium rounded-lg transition-all duration-300 group hover:text-brand"
+            :class="{ 'text-brand': $route.path === item.href }">
             <span>{{ item.name }}</span>
             <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"
               :class="{ 'w-full': $route.path === item.href }"></span>
@@ -29,10 +29,7 @@
 
         <!-- CTA Button Desktop -->
         <div class="hidden lg:block">
-          <NuxtLink to="/contact"
-            class="no-active-color bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-2.5 rounded-lg font-semibold shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300 hover:from-blue-700 hover:to-blue-800">
-            Contact Us
-          </NuxtLink>
+
         </div>
 
         <!-- Mobile menu button -->
@@ -60,8 +57,8 @@
         :class="isMobileOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'">
         <div class="py-4 space-y-2 border-t border-gray-200 mt-3">
           <NuxtLink v-for="item in navigation" :key="item.name" :to="item.href"
-            class="block py-3 px-4 text-gray-700 font-medium rounded-lg transition-all duration-300 hover:bg-blue-50 hover:text-blue-600 hover:pl-6 group"
-            :class="{ 'bg-blue-50 text-blue-600 pl-6': $route.path === item.href }" @click="closeMobileMenu">
+            class="block py-3 px-4 text-gray-700 font-medium rounded-lg transition-all duration-300 hover:bg-blue-50 hover:text-brand hover:pl-6 group"
+            :class="{ 'bg-blue-50 text-brand pl-6': $route.path === item.href }" @click="closeMobileMenu">
             <div class="flex items-center">
               <span
                 class="w-1 h-6 bg-blue-600 rounded-full mr-3 transition-all duration-300 opacity-0 group-hover:opacity-100"
@@ -91,7 +88,7 @@ const isScrolled = ref(false)
 const navigation = [
   { name: 'Home', href: '/' },
   { name: 'About Us', href: '/about' },
-  { name: 'Services', href: '/services' },
+  { name: 'Capability', href: '/services' },
   { name: 'Experience', href: '/projects' },
   { name: 'Leadership', href: '/leadership' },
   { name: 'Contact', href: '/contact' }
@@ -120,8 +117,12 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+.text-brand {
+  color: #1e3a8a;
+}
+
 .router-link-active {
-  @apply text-blue-600 font-semibold;
+  @apply text-brand font-semibold;
 }
 
 /* Smooth transitions for mobile menu */

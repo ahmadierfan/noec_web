@@ -11,7 +11,7 @@
         class="absolute bottom-0 right-0 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float animation-delay-2000">
       </div>
 
-      <div class="container mx-auto px-4 relative z-10">
+      <div class="container mx-auto px-4 relative z-10 pb-20">
         <div class="max-w-3xl">
           <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight section-title"
             :class="{ 'animate-title-in': isHeaderVisible }">
@@ -47,13 +47,13 @@
           <p class="text-xl text-gray-600">Highly qualified professionals with decades of industry experience</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 mb-20 md:px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20 md:px-6">
           <div v-for="(leader, index) in leadershipTeam" :key="leader.name"
             class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 leader-card"
             :class="{ 'animate-leader-in': isTeamVisible }" :style="`animation-delay: ${400 + index * 200}ms`">
             <div class="p-6">
               <h3 class="text-xl font-bold text-gray-800 mb-2 leader-name">{{ leader.name }}</h3>
-              <p class="text-blue-600 font-semibold mb-4 leader-position">{{ leader.position }}</p>
+              <p class="text-brand font-semibold mb-4 leader-position">{{ leader.position }}</p>
 
               <div class="mb-4 leader-education">
                 <h4 class="font-semibold text-gray-700 mb-2">Education:</h4>
@@ -74,50 +74,6 @@
                 <p class="text-sm text-gray-600">{{ leader.experience }}</p>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Team Strengths -->
-    <section ref="strengthsSection" class="section-padding bg-gray-50 mx-20 mb-20 strengths-section">
-      <div class="container-custom">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 class="text-3xl font-bold text-gray-800 mb-6 strengths-title"
-              :class="{ 'animate-strengths-title': isStrengthsVisible }">
-              Our Strength
-            </h2>
-            <p class="text-lg text-gray-600 mb-6 strengths-description"
-              :class="{ 'animate-strengths-description': isStrengthsVisible }">
-              The NextOil & Energy Ltd. Management Team comprises highly qualified and technically skilled
-              professionals dedicated to delivering innovative, reliable, and cost-effective solutions to
-              complex industry challenges.
-            </p>
-            <div class="space-y-4">
-              <div v-for="(strength, index) in strengths" :key="strength.title" class="flex items-center strength-item"
-                :class="{ 'animate-strength-in': isStrengthsVisible }"
-                :style="`animation-delay: ${500 + index * 150}ms`">
-                <div
-                  class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4 strength-icon hover-scale">
-                  <span class="text-blue-600 font-bold text-lg">{{ strength.value }}</span>
-                </div>
-                <div>
-                  <h3 class="font-semibold text-gray-800 strength-title">{{ strength.title }}</h3>
-                  <p class="text-gray-600 text-sm strength-subtitle">{{ strength.subtitle }}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="grid grid-cols-2 gap-4 images-container" :class="{ 'animate-images-in': isStrengthsVisible }">
-            <img src="/images/hero-1.jpg" alt="Team Collaboration"
-              class="rounded-lg shadow-md h-48 w-full object-cover image-item hover-scale">
-            <img src="/images/hero-1.jpg" alt="Project Meeting"
-              class="rounded-lg shadow-md h-48 w-full object-cover mt-8 image-item hover-scale">
-            <img src="/images/hero-1.jpg" alt="Site Inspection"
-              class="rounded-lg shadow-md h-48 w-full object-cover image-item hover-scale">
-            <img src="/images/hero-1.jpg" alt="Technical Discussion"
-              class="rounded-lg shadow-md h-48 w-full object-cover mt-8 image-item hover-scale">
           </div>
         </div>
       </div>
@@ -155,7 +111,7 @@ const leadershipTeam = [
     name: 'Dr. Mohammad Reza Gharavi',
     position: 'Member of the Board',
     lastEducation: 'Ph.D. in Mechanical Engineering',
-    experience: '25+ years academic (Universities of California and Maryland) and industrial work experiences in technology development, engineering design, companies directorship, chemical & petrochemical projects development.'
+    experience: '25+ years academic and industrial work experiences in technology development, engineering design, companies directorship, chemical & petrochemical projects development.'
   },
   {
     name: 'Dr. Mansour Bazmi',
@@ -168,6 +124,12 @@ const leadershipTeam = [
     position: 'Managing Director',
     lastEducation: 'Mechanical Engineering',
     experience: 'Over 30 years of extensive international experience across Europe, Asia, and Africa in Oil & Gas and Petrochemical sectors. Strong track record in engineering and execution of large-scale refinery and petrochemical projects. Skilled in EPCM for upstream and downstream oil & gas, petrochemical plants, and pipeline projects.'
+  },
+  {
+    name: 'Mohammad Ali Astaneh',
+    position: '-',
+    lastEducation: '-',
+    experience: '-'
   }
 ]
 
@@ -549,7 +511,7 @@ onUnmounted(() => {
 }
 
 /* Group hover effects */
-.group:hover .group-hover\:text-blue-600 {
+.group:hover .group-hover\:text-brand {
   color: #2563eb;
 }
 

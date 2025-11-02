@@ -41,7 +41,7 @@
                         <!-- Icon -->
                         <div
                             class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-6 transition-all duration-500 group-hover:bg-blue-600 group-hover:scale-110 group-hover:rotate-3">
-                            <svg class="w-8 h-8 text-blue-600 transition-all duration-500 group-hover:text-white group-hover:scale-110"
+                            <svg class="w-8 h-8 text-brand transition-all duration-500 group-hover:text-white group-hover:scale-110"
                                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     :d="service.icon" />
@@ -50,7 +50,7 @@
 
                         <!-- Title -->
                         <h3
-                            class="text-xl font-bold text-gray-800 mb-4 transition-colors duration-300 group-hover:text-blue-700">
+                            class="text-xl font-bold text-gray-800 mb-4 transition-colors duration-300 group-hover:text-brand">
                             {{ service.title }}
                         </h3>
 
@@ -89,15 +89,15 @@
                     'translate-y-10 opacity-0': !isVisible,
                     'translate-y-0 opacity-100': isVisible
                 }" style="transition-delay: 750ms">
-                    <NuxtLink to="/services"
+                    <NuxtLink to="/engineering"
                         class="inline-flex items-center bg-blue-600 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group">
-                        <span class="relative z-10">Explore All Services</span>
+                        <span class="relative z-10">Explore Engineering Services</span>
                         <svg class="w-5 h-5 ml-2 relative z-10 transform group-hover:translate-x-1 transition-transform duration-300"
                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                         </svg>
                         <div
-                            class="absolute inset-0 bg-blue-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-xl">
+                            class="absolute inset-0 background-brand transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-xl">
                         </div>
                     </NuxtLink>
                 </div>

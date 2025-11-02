@@ -13,7 +13,7 @@
       <div class="container mx-auto px-4 relative z-10">
         <div class="max-w-3xl">
           <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-            Our <span class="text-blue-300">Services</span>
+            Our <span class="text-blue-300">Capability</span>
           </h1>
           <p class="text-xl md:text-2xl text-blue-100 mb-8 leading-relaxed">
             End-to-end solutions for energy, oil & gas, and petrochemical industries with innovation and excellence
@@ -55,7 +55,7 @@
           <div class="relative">
             <div class="relative z-10">
               <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6 leading-tight">
-                Comprehensive <span class="text-blue-600">Engineering</span> Solutions
+                Project Execution
               </h2>
               <p class="text-lg text-gray-600 mb-8 leading-relaxed">
                 NextOil & Energy Ltd. leverages cutting-edge technology and financial resources to deliver
@@ -65,7 +65,7 @@
 
               <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-2xl border border-blue-100">
                 <h3 class="text-xl font-bold text-blue-900 mb-4 flex items-center">
-                  <svg class="w-5 h-5 mr-2 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                  <svg class="w-5 h-5 mr-2 text-brand" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd"
                       d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
                       clip-rule="evenodd" />
@@ -77,7 +77,7 @@
                     <div
                       class="w-2 h-2 bg-blue-500 rounded-full mr-3 group-hover:scale-150 transition-transform duration-300">
                     </div>
-                    <span class="text-gray-700 font-medium group-hover:text-blue-600 transition-colors duration-300">{{
+                    <span class="text-gray-700 font-medium group-hover:text-brand transition-colors duration-300">{{
                       feature }}</span>
                   </div>
                 </div>
@@ -95,25 +95,6 @@
                 class="w-full h-96 object-cover transform group-hover:scale-105 transition-transform duration-700" />
               <div
                 class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-              </div>
-
-              <!-- Floating Stats -->
-              <div
-                class="absolute bottom-6 left-6 right-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
-                <div class="grid grid-cols-3 gap-4 text-white">
-                  <div class="text-center bg-white/20 backdrop-blur-sm rounded-lg p-3">
-                    <div class="text-2xl font-bold">50+</div>
-                    <div class="text-xs opacity-90">Projects</div>
-                  </div>
-                  <div class="text-center bg-white/20 backdrop-blur-sm rounded-lg p-3">
-                    <div class="text-2xl font-bold">15+</div>
-                    <div class="text-xs opacity-90">Countries</div>
-                  </div>
-                  <div class="text-center bg-white/20 backdrop-blur-sm rounded-lg p-3">
-                    <div class="text-2xl font-bold">25+</div>
-                    <div class="text-xs opacity-90">Years</div>
-                  </div>
-                </div>
               </div>
             </div>
 
@@ -142,21 +123,20 @@
               <div class="relative z-10">
                 <div
                   class="w-16 h-16 bg-gradient-to-br from-blue-100 to-blue-200 rounded-2xl flex items-center justify-center mb-6 group-hover:from-blue-200 group-hover:to-blue-300 transition-all duration-500 transform group-hover:scale-110 shadow-md">
-                  <svg class="w-8 h-8 text-blue-600 transform group-hover:scale-110 transition-transform duration-500"
+                  <svg class="w-8 h-8 text-brand transform group-hover:scale-110 transition-transform duration-500"
                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="service.icon" />
                   </svg>
                 </div>
 
-                <h3
-                  class="text-xl font-bold text-gray-800 mb-4 group-hover:text-blue-600 transition-colors duration-300">
+                <h3 class="text-xl font-bold text-gray-800 mb-4 group-hover:text-brand transition-colors duration-300">
                   {{ service.title }}
                 </h3>
                 <p class="text-gray-600 mb-6 leading-relaxed">{{ service.description }}</p>
 
                 <ul class="space-y-3">
                   <li v-for="item in service.items" :key="item"
-                    class="flex items-center text-sm text-gray-600 hover:text-blue-600 transition-colors duration-300 group/item">
+                    class="flex items-center text-sm text-gray-600 hover:text-brand transition-colors duration-300 group/item">
                     <svg
                       class="w-4 h-4 text-green-500 mr-3 flex-shrink-0 transform group-hover/item:scale-125 transition-transform duration-300"
                       fill="currentColor" viewBox="0 0 20 20">
@@ -171,7 +151,7 @@
                 <!-- Learn More Button -->
                 <div class="mt-6 pt-6 border-t border-gray-100">
                   <button
-                    class="flex items-center text-blue-600 font-semibold hover:text-blue-700 transition-colors duration-300 group/btn">
+                    class="flex items-center text-brand font-semibold hover:text-brand transition-colors duration-300 group/btn">
                     Learn More
                     <svg class="w-4 h-4 ml-2 transform group-hover/btn:translate-x-1 transition-transform duration-300"
                       fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -302,8 +282,8 @@ useSeoMeta({
 })
 
 const whyChooseUs = [
-  'World-class engineering expertise with 25+ years average experience',
-  'Global project delivery across 15+ countries',
+  'World-class engineering expertise',
+  'Global project delivery',
   'Innovative technology solutions and proprietary processes',
   'End-to-end project lifecycle management',
   'Strong financial and technological resources',
@@ -312,19 +292,19 @@ const whyChooseUs = [
 
 const services = [
   {
-    title: 'Project Studies & Consultancy',
+    title: 'Studies & Consultancy',
     description: 'Comprehensive feasibility studies and expert consultancy services for optimal project planning and execution.',
     icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
-    items: ['Feasibility Studies', 'Technical Consultancy', 'Project Planning', 'Risk Assessment', 'Economic Analysis']
+    items: ['Environmental Solutions', 'Feasibility Studies', 'Technical Consultancy', 'Project Planning', 'Risk Assessment', 'Economic Analysis']
   },
   {
-    title: 'Engineering Services',
+    title: 'Engineering ',
     description: 'End-to-end engineering solutions from concept to detailed design with cutting-edge technology.',
     icon: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z',
-    items: ['Basic Engineering', 'FEED Studies', 'Detailed Engineering', 'Process Design', '3D Modeling']
+    items: ['Pipeline Construction', 'Basic Engineering', 'FEED Studies', 'Detailed Engineering', 'Process Design', '3D Modeling']
   },
   {
-    title: 'Procurement & Installation',
+    title: 'Procurement',
     description: 'Complete equipment sourcing, fabrication, and installation services with quality assurance.',
     icon: 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10',
     items: ['Equipment Sourcing', 'Fabrication', 'Installation', 'Quality Control', 'Logistics Management']
@@ -336,13 +316,7 @@ const services = [
     items: ['Oil & Gas Facilities', 'Petrochemical Plants', 'Production Units', 'Storage Facilities', 'Utilities']
   },
   {
-    title: 'Pipeline Construction',
-    description: 'Professional pipeline and flowline installation and maintenance services worldwide.',
-    icon: 'M13 10V3L4 14h7v7l9-11h-7z',
-    items: ['Pipeline Installation', 'Flowline Construction', 'Maintenance', 'Repair Services', 'Integrity Management']
-  },
-  {
-    title: 'Environmental Solutions',
+    title: 'Construction',
     description: 'Sustainable and regulatory-compliant environmental protection and waste management.',
     icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
     items: ['Waste Management', 'Environmental Protection', 'Compliance Solutions', 'Sustainability', 'Emission Control']

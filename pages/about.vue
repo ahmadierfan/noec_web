@@ -48,7 +48,7 @@
             <div
               class="bg-white p-8 rounded-2xl shadow-2xl hover-lift hover-glow cursor-pointer transition-all duration-700 border border-gray-100">
               <div
-                class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mb-6 hover-rotate-icon">
+                class="w-16 h-16 background-brand rounded-full flex items-center justify-center mb-6 hover-rotate-icon">
                 <div v-html="card.icon" class="w-8 h-8 text-white">
                 </div>
               </div>
@@ -74,7 +74,7 @@
           <div
             class="bg-gradient-to-r from-gray-50 to-blue-50 p-8 rounded-2xl shadow-xl border-l-4 border-blue-600 hover-scale-sm transition-all duration-500 group">
             <h3 class="text-2xl font-bold text-gray-800 mb-4">Our Operating Philosophy</h3>
-            <p class="text-3xl font-semibold text-blue-600">"Deliver Results, Not Reasons"</p>
+            <p class="text-3xl font-semibold text-brand">"Deliver Results, Not Reasons"</p>
             <div class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
               <div class="w-24 h-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full mx-auto animate-pulse"></div>
             </div>
@@ -100,12 +100,10 @@
             <div
               class="bg-white p-6 rounded-xl shadow-lg hover-lift hover-glow cursor-pointer transition-all duration-500 group border border-gray-100">
               <div class="flex items-center mb-4">
-                <div
-                  class="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mr-3">
+                <div class="w-8 h-8 background-brand rounded-full flex items-center justify-center mr-3">
                   <span class="text-white text-sm font-bold">{{ index + 1 }}</span>
                 </div>
-                <h3
-                  class="text-lg font-semibold text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
+                <h3 class="text-lg font-semibold text-gray-800 group-hover:text-brand transition-colors duration-300">
                   {{ principle.title }}
                 </h3>
               </div>
@@ -572,7 +570,7 @@ onUnmounted(() => {
 }
 
 /* Group hover effects */
-.group:hover .group-hover\:text-blue-600 {
+.group:hover .group-hover\:text-brand {
   color: #2563eb;
 }
 

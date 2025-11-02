@@ -15,25 +15,12 @@
         <div class="max-w-3xl">
           <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight section-title"
             :class="{ 'animate-title-in': isHeaderVisible }">
-            Our <span class="text-blue-300 magic-text">Projects</span>
+            Our <span class="text-blue-300 magic-text"> Principal Experiences </span>
           </h1>
           <p class="text-xl md:text-2xl text-blue-100 mb-8 leading-relaxed section-subtitle"
             :class="{ 'animate-subtitle-in': isHeaderVisible }">
             Pioneering energy solutions across global markets with innovation and excellence
           </p>
-          <div class="flex items-center space-x-4 text-blue-200">
-            <div v-for="(stat, index) in headerStats" :key="stat.text" class="header-stat-item"
-              :class="{ 'animate-stat-in': isHeaderVisible }" :style="`animation-delay: ${500 + index * 150}ms`">
-              <div class="flex items-center">
-                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clip-rule="evenodd" />
-                </svg>
-                <span>{{ stat.text }}</span>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -59,39 +46,16 @@
               </span>
             </div>
 
-            <div class="h-80 overflow-hidden relative">
-              <img :src="project.image" :alt="project.title"
-                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-              </div>
-
-              <!-- Project Stats Overlay -->
-              <div
-                class="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0 project-stats">
-                <div class="flex space-x-4 text-white">
-                  <div class="text-center">
-                    <div class="text-2xl font-bold">{{ project.capacity }}</div>
-                    <div class="text-xs opacity-90">Capacity</div>
-                  </div>
-                  <div class="text-center">
-                    <div class="text-2xl font-bold">{{ project.duration }}</div>
-                    <div class="text-xs opacity-90">Duration</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
             <div class="p-8">
               <h3
-                class="text-2xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors duration-300 project-title">
+                class="text-2xl font-bold text-gray-800 mb-3 group-hover:text-brand transition-colors duration-300 project-title">
                 {{ project.title }}
               </h3>
               <p class="text-gray-600 mb-6 leading-relaxed project-description">{{ project.description }}</p>
 
               <div class="flex flex-wrap gap-2 mb-6 project-tags">
                 <span v-for="(tag, tagIndex) in project.tags" :key="tag"
-                  class="bg-gray-100 text-gray-700 px-3 py-1.5 rounded-full text-sm font-medium hover:bg-blue-100 hover:text-blue-700 transition-all duration-300 cursor-default project-tag"
+                  class="bg-gray-100 text-gray-700 px-3 py-1.5 rounded-full text-sm font-medium hover:bg-blue-100 hover:text-brand transition-all duration-300 cursor-default project-tag"
                   :class="{ 'animate-tag-in': isProjectsVisible }"
                   :style="`animation-delay: ${800 + index * 200 + tagIndex * 50}ms`">
                   {{ tag }}
@@ -108,7 +72,7 @@
                   Completed {{ project.year }}
                 </div>
                 <button
-                  class="flex items-center text-blue-600 font-semibold hover:text-blue-700 transition-colors duration-300 group/btn project-button">
+                  class="flex items-center text-brand font-semibold hover:text-brand transition-colors duration-300 group/btn project-button">
                   View Details
                   <svg class="w-4 h-4 ml-2 transform group-hover/btn:translate-x-1 transition-transform duration-300"
                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -137,7 +101,7 @@
               :style="`animation-delay: ${300 + index * 100}ms`">
               <div
                 class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-600 transition-colors duration-300 experience-icon">
-                <svg class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" fill="none"
+                <svg class="w-6 h-6 text-brand group-hover:text-white transition-colors duration-300" fill="none"
                   stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2-2H5a2 2 0 00-2 2v16a2 2 0 002 2h14a2 2 0 002-2zM9 21V7h6v14" />
@@ -145,7 +109,7 @@
               </div>
 
               <h4
-                class="text-lg font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors duration-300 experience-title">
+                class="text-lg font-bold text-gray-800 mb-3 group-hover:text-brand transition-colors duration-300 experience-title">
                 {{ experience.title }}
               </h4>
               <p class="text-gray-600 mb-4 leading-relaxed experience-description">{{ experience.description }}</p>
@@ -161,7 +125,7 @@
                 </p>
                 <ul class="text-sm text-gray-600 space-y-2">
                   <li v-for="(capacity, capacityIndex) in experience.capacities" :key="capacity"
-                    class="flex items-center hover:text-blue-600 transition-colors duration-300 capacity-item"
+                    class="flex items-center hover:text-brand transition-colors duration-300 capacity-item"
                     :class="{ 'animate-capacity-in': isExperienceVisible }"
                     :style="`animation-delay: ${500 + index * 100 + capacityIndex * 50}ms`">
                     <svg class="w-3 h-3 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
@@ -195,73 +159,16 @@
               :style="`animation-delay: ${400 + index * 50}ms`">
               <div
                 class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3 group-hover:bg-blue-600 transition-colors duration-300 equipment-icon">
-                <svg class="w-5 h-5 text-blue-600 group-hover:text-white transition-colors duration-300" fill="none"
+                <svg class="w-5 h-5 text-brand group-hover:text-white transition-colors duration-300" fill="none"
                   stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
                 </svg>
               </div>
               <p
-                class="text-gray-700 font-medium text-sm group-hover:text-blue-600 transition-colors duration-300 equipment-name">
+                class="text-gray-700 font-medium text-sm group-hover:text-brand transition-colors duration-300 equipment-name">
                 {{ equipment }}
               </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Global Presence -->
-    <section ref="globalSection"
-      class="section-padding bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 text-white relative overflow-hidden global-section">
-      <div class="absolute inset-0 bg-world-map opacity-5"></div>
-      <div
-        class="absolute top-0 right-0 w-64 h-64 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-float">
-      </div>
-
-      <div class="container-custom relative z-10 mt-20">
-        <div class="text-center mb-16 global-header" :class="{ 'animate-global-header': isGlobalVisible }">
-          <h2 class="text-4xl md:text-5xl font-bold mb-4">Worldwide Presence</h2>
-          <p class="text-xl text-blue-200 max-w-2xl mx-auto">
-            Delivering excellence across continents with local expertise and global standards
-          </p>
-        </div>
-
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          <div v-for="(region, index) in globalRegions" :key="region.name" class="group relative region-item"
-            :class="{ 'animate-region-in': isGlobalVisible }" :style="`animation-delay: ${500 + index * 150}ms`">
-            <div class="relative">
-              <div
-                class="w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:from-blue-400 group-hover:to-blue-500 transition-all duration-500 transform group-hover:scale-110 shadow-lg group-hover:shadow-xl region-icon">
-                <svg class="w-12 h-12 text-white transform group-hover:scale-110 transition-transform duration-500"
-                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <div
-                class="absolute inset-0 rounded-full border-2 border-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-ping">
-              </div>
-            </div>
-            <h3 class="text-2xl font-bold mb-2 group-hover:text-blue-300 transition-colors duration-300 region-name">
-              {{ region.name }}
-            </h3>
-            <div class="text-3xl font-bold text-blue-300 mb-1 region-projects">{{ region.projects }}+</div>
-            <p class="text-blue-200 text-sm region-label">Successful Projects</p>
-          </div>
-        </div>
-
-        <!-- Stats Bar -->
-        <div class="mt-16 bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 global-stats"
-          :class="{ 'animate-stats-in': isGlobalVisible }">
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div v-for="(stat, index) in globalStats" :key="stat.label" class="group stat-item"
-              :class="{ 'animate-stat-item-in': isGlobalVisible }" :style="`animation-delay: ${800 + index * 100}ms`">
-              <div
-                class="text-3xl md:text-4xl font-bold text-white mb-2 group-hover:text-blue-300 transition-colors duration-300 stat-value">
-                {{ stat.value }}
-              </div>
-              <div class="text-blue-200 text-sm font-semibold stat-label">{{ stat.label }}</div>
             </div>
           </div>
         </div>
@@ -900,7 +807,7 @@ onUnmounted(() => {
 }
 
 /* Group hover effects */
-.group:hover .group-hover\:text-blue-600 {
+.group:hover .group-hover\:text-brand {
   color: #2563eb;
 }
 

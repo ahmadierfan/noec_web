@@ -50,7 +50,7 @@
               :class="{ 'animate-form-in': isContactVisible }">
               <div class="text-center mb-10 form-header" :class="{ 'animate-form-header': isContactVisible }">
                 <div
-                  class="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-700 font-semibold text-sm mb-4 form-badge">
+                  class="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-brand font-semibold text-sm mb-4 form-badge">
                   <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                     <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
@@ -174,15 +174,15 @@
                   <div class="flex items-start">
                     <div
                       class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center mr-6 group-hover:bg-blue-600 transition-colors duration-300 shadow-md info-icon">
-                      <svg class="w-7 h-7 text-blue-600 group-hover:text-white transition-colors duration-300"
-                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg class="w-7 h-7 text-brand group-hover:text-white transition-colors duration-300" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                           d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2-2H5a2 2 0 00-2 2v16a2 2 0 002 2h14a2 2 0 002-2zM16 3h2a2 2 0 012 2v14a2 2 0 01-2 2h-2" />
                       </svg>
                     </div>
                     <div>
                       <h3
-                        class="text-xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors duration-300 info-title">
+                        class="text-xl font-bold text-gray-800 mb-3 group-hover:text-brand transition-colors duration-300 info-title">
                         Company Profile
                       </h3>
                       <p class="text-gray-600 leading-relaxed info-description">
@@ -272,9 +272,9 @@
                   :class="{ 'animate-business-hour': isContactVisible }"
                   :style="`animation-delay: ${500 + index * 100}ms`">
                   <span class="text-blue-200 font-medium">{{ hour.day }}</span>
-                  <span class="text-white font-semibold bg-blue-700 px-3 py-1 rounded-full text-sm hour-time">{{
+                  <span class="text-white font-semibold background-brand px-3 py-1 rounded-full text-sm hour-time">{{
                     hour.time
-                  }}</span>
+                    }}</span>
                 </div>
               </div>
               <div class="mt-6 p-4 bg-blue-800 rounded-xl border border-blue-600 business-note"
@@ -896,7 +896,7 @@ const submitForm = async () => {
 }
 
 /* Group hover effects */
-.group:hover .group-hover\:text-blue-600 {
+.group:hover .group-hover\:text-brand {
   color: #2563eb;
 }
 
