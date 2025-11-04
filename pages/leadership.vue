@@ -108,8 +108,14 @@ const badges = [
 
 const leadershipTeam = [
   {
+    name: 'Mohammad Ali Astaneh',
+    position: 'Chairman',
+    lastEducation: "Master's Degree in Management",
+    experience: '-'
+  },
+  {
     name: 'Dr. Mohammad Reza Gharavi',
-    position: 'Member of the Board',
+    position: 'Vice Chairman',
     lastEducation: 'Ph.D. in Mechanical Engineering',
     experience: '25+ years academic and industrial work experiences in technology development, engineering design, companies directorship, chemical & petrochemical projects development.'
   },
@@ -125,12 +131,7 @@ const leadershipTeam = [
     lastEducation: 'Mechanical Engineering',
     experience: 'Over 30 years of extensive international experience across Europe, Asia, and Africa in Oil & Gas and Petrochemical sectors. Strong track record in engineering and execution of large-scale refinery and petrochemical projects. Skilled in EPCM for upstream and downstream oil & gas, petrochemical plants, and pipeline projects.'
   },
-  {
-    name: 'Mohammad Ali Astaneh',
-    position: '-',
-    lastEducation: '-',
-    experience: '-'
-  }
+
 ]
 
 const strengths = [
