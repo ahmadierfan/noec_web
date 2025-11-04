@@ -114,13 +114,13 @@ const leadershipTeam = [
     experience: 'Over 35 years of experience in economics and management, holding senior responsibilities in major industrial and infrastructure projects.Expertise in urea and ammonia production, bunkering, ship management, rail wagon operations, and mining.'
   },
   {
-    name: 'Dr. Mohammad Reza Gharavi',
+    name: 'Mohammad Reza Gharavi',
     position: 'Vice Chairman',
     lastEducation: 'Ph.D. in Mechanical Engineering',
     experience: '25+ years academic and industrial work experiences in technology development, engineering design, companies directorship, chemical & petrochemical projects development.'
   },
   {
-    name: 'Dr. Mansour Bazmi',
+    name: 'Mansour Bazmi',
     position: 'Member of the Board',
     lastEducation: 'Ph.D. in Chemical Engineering',
     experience: '30+ years strong experience in oil & gas technology development, brilliant experience in innovative projects management, director of petroleum institutes.'
