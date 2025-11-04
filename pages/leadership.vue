@@ -114,7 +114,7 @@ const leadershipTeam = [
     experience: 'Over 35 years of experience in economics and management, holding senior responsibilities in major industrial and infrastructure projects.Expertise in urea and ammonia production, bunkering, ship management, rail wagon operations, and mining.'
   },
   {
-    name: 'Mohammad Reza Gharavi',
+    name: 'Mohammadreza Gharavi',
     position: 'Vice Chairman',
     lastEducation: 'Ph.D. in Mechanical Engineering',
     experience: '25+ years academic and industrial work experiences in technology development, engineering design, companies directorship, chemical & petrochemical projects development.'
