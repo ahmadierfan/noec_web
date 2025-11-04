@@ -32,7 +32,10 @@
                             <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
                                 <span class="text-white drop-shadow-2xl">Pipeline</span>
                                 <br>
-                                <span class="text-yellow-400 drop-shadow-2xl">Fabrication</span>
+                                <span
+                                    class="bg-gradient-to-t from-orange-600 via-orange-400 to-yellow-300 bg-clip-text text-transparent font-bold">
+                                    Fabrication
+                                </span>
                             </h1>
 
                             <p
@@ -47,7 +50,9 @@
                                     class="flex items-center gap-3 p-4 bg-white/10 rounded-xl backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300">
                                     <div
                                         class="w-8 h-8 bg-yellow-400/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                                        <span class="text-yellow-400 font-bold text-sm">{{ index + 1 }}</span>
+                                        <span
+                                            class="bg-gradient-to-t from-orange-600 via-orange-400 to-yellow-300 bg-clip-text text-transparent  font-bold text-sm">{{
+                                                index + 1 }}</span>
                                     </div>
                                     <p class="text-white text-sm text-left">{{ detail }}</p>
                                 </div>
@@ -72,7 +77,8 @@
                         <!-- Content -->
                         <div class="text-white h-full flex flex-col justify-center order-2 lg:order-1">
                             <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-                                Component <span class="text-green-400">Assembly</span>
+                                Component <span
+                                    class="bg-gradient-to-t from-orange-600 via-orange-400 to-yellow-300 bg-clip-text text-transparent ">Assembly</span>
                             </h2>
 
                             <p class="text-lg text-gray-300 mb-8 leading-relaxed">
@@ -85,7 +91,9 @@
                                     class="flex items-start gap-3 p-3 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 transition-colors">
                                     <div
                                         class="w-6 h-6 bg-green-400/20 rounded flex items-center justify-center flex-shrink-0 mt-0.5">
-                                        <span class="text-green-400 font-bold text-xs">{{ index + 1 }}</span>
+                                        <span
+                                            class="bg-gradient-to-t from-orange-600 via-orange-400 to-yellow-300 bg-clip-text text-transparent  font-bold text-xs">{{
+                                                index + 1 }}</span>
                                     </div>
                                     <p class="text-gray-300 text-sm leading-relaxed">{{ detail }}</p>
                                 </div>
@@ -122,7 +130,8 @@
                         <!-- Content -->
                         <div class="text-white h-full flex flex-col justify-center">
                             <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-                                Quality <span class="text-purple-400">Inspection</span>
+                                Quality <span
+                                    class="bg-gradient-to-t from-orange-600 via-orange-400 to-yellow-300 bg-clip-text text-transparent ">Inspection</span>
                             </h2>
 
                             <p class="text-lg text-gray-300 mb-8 leading-relaxed">
@@ -135,7 +144,9 @@
                                     class="flex items-start gap-3 p-3 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 transition-colors">
                                     <div
                                         class="w-6 h-6 bg-purple-400/20 rounded flex items-center justify-center flex-shrink-0 mt-0.5">
-                                        <span class="text-purple-400 font-bold text-xs">{{ index + 1 }}</span>
+                                        <span
+                                            class="bg-gradient-to-t from-orange-600 via-orange-400 to-yellow-300 bg-clip-text text-transparent  font-bold text-xs">{{
+                                                index + 1 }}</span>
                                     </div>
                                     <p class="text-gray-300 text-sm leading-relaxed">{{ detail }}</p>
                                 </div>
@@ -152,7 +163,8 @@
                         <!-- Content -->
                         <div class="text-white h-full flex flex-col justify-center order-2 lg:order-1">
                             <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-                                Final <span class="text-red-400">Testing</span>
+                                Final <span
+                                    class="bg-gradient-to-t from-orange-600 via-orange-400 to-yellow-300 bg-clip-text text-transparent ">Testing</span>
                             </h2>
 
                             <p class="text-lg text-gray-300 mb-8 leading-relaxed">
@@ -165,7 +177,9 @@
                                     class="flex items-start gap-3 p-3 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 transition-colors">
                                     <div
                                         class="w-6 h-6 bg-red-400/20 rounded flex items-center justify-center flex-shrink-0 mt-0.5">
-                                        <span class="text-red-400 font-bold text-xs">{{ index + 1 }}</span>
+                                        <span
+                                            class="bg-gradient-to-t from-orange-600 via-orange-400 to-yellow-300 bg-clip-text text-transparent  font-bold text-xs">{{
+                                                index + 1 }}</span>
                                     </div>
                                     <p class="text-gray-300 text-sm leading-relaxed">{{ detail }}</p>
                                 </div>
@@ -190,7 +204,7 @@
         <div class="fixed right-8 top-1/2 transform -translate-y-1/2 z-40 space-y-4">
             <button v-for="section in 4" :key="section" @click="scrollToSection(section)"
                 class="block w-3 h-3 rounded-full transition-all duration-300 hover:scale-150"
-                :class="activeVideo === section ? 'bg-yellow-400 scale-125' : 'bg-white/30'">
+                :class="activeVideo === section ? 'bg-orange-400 scale-125' : 'bg-white/30'">
             </button>
         </div>
     </section>

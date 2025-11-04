@@ -85,7 +85,7 @@
         </div>
 
         <!-- Loading Bar -->
-        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-yellow-300 transform origin-left transition-transform duration-2000 z-30"
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-orange-300 transform origin-left transition-transform duration-2000 z-30"
             :class="isLoaded ? 'scale-x-0' : 'scale-x-100'"></div>
     </section>
 </template>
@@ -100,7 +100,7 @@ const backgroundVideo = ref(null)
 const showVideo = ref(false)
 const typingComplete = ref(false)
 
-const fullText = `Pioneering <span class="text-yellow-300 font-semibold">Global Energy Solutions</span> with Innovation and Excellence`
+const fullText = `Pioneering <span class="text-orange-400 font-semibold">Global Energy Solutions</span> with Innovation and Excellence`
 let currentText = ''
 let charIndex = 0
 let typingTimer = null

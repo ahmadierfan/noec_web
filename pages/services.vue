@@ -91,7 +91,7 @@
 
           <div class="relative">
             <div class="relative rounded-2xl overflow-hidden shadow-2xl group">
-              <img src="/images/hero-1.jpg" alt="Our Services"
+              <img src="/images/2.jpg" alt="Our Services"
                 class="w-full h-96 object-cover transform group-hover:scale-105 transition-transform duration-700" />
               <div
                 class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
