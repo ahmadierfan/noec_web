@@ -108,7 +108,7 @@ const badges = [
 
 const leadershipTeam = [
   {
-    name: 'Mohammad Ali Astaneh',
+    name: 'Mohammadali Astaneh',
     position: 'Chairman',
     lastEducation: "Master's Degree in Management",
     experience: 'Over 35 years of experience in economics and management, holding senior responsibilities in major industrial and infrastructure projects.Expertise in urea and ammonia production, bunkering, ship management, rail wagon operations, and mining.'
