@@ -4,7 +4,6 @@ import { useLoadingStore } from '@/stores/loading';
 export default defineNuxtPlugin((nuxtApp) => {
   const apiBaseUrlFree = "http://127.0.0.1:8000/api"
   const router = useRouter()
-  const toast = useToast()
 
   const loadingStore = useLoadingStore();
 

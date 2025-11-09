@@ -30,11 +30,11 @@
                             'translate-y-10 opacity-0': activeVideo !== 1
                         }">
                             <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
-                                <span class="text-white drop-shadow-2xl">Pipeline</span>
+                                <span class="text-white drop-shadow-2xl">Detail</span>
                                 <br>
                                 <span
                                     class="bg-gradient-to-t from-orange-600 via-orange-400 to-yellow-300 bg-clip-text text-transparent font-bold">
-                                    Fabrication
+                                    Engineering
                                 </span>
                             </h1>
 

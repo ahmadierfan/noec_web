@@ -2,7 +2,7 @@
   <div>
     <HeroSection />
     <QuickIntroSection />
-    <ServicesPreviewSection />
+    <Transparency />
   </div>
 </template>
 

@@ -118,6 +118,9 @@
         </div>
       </div>
     </section>
+    <div class="px-20 py-10">
+      <img src="/images/organ-chart.png" />
+    </div>
   </div>
 </template>
 
@@ -180,7 +183,7 @@ const badges = [
 const visionMissionCards = [
   {
     title: 'Our Vision',
-    description: 'To establish NextOil & Energy Ltd. as a leading consultant...',
+    description: 'To establish NextOil & Energy Ltd. as a leading consultant, EPC contractor, and technology/process package developer in the Middle East, while expanding our services to markets around the world.',
     icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
         d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -190,7 +193,7 @@ const visionMissionCards = [
   },
   {
     title: 'Our Mission',
-    description: 'To build positive, long-term relationships with our clients...',
+    description: 'To build positive, long-term relationships with our clients by providing the best products, solutions, consultancy, and engineering services. We are dedicated to delivering innovative, time- and cost - effective solutions driven by technical excellence, quality service, and true client partnerships.',
     icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
         d="M13 10V3L4 14h7v7l9-11h-7z" />
