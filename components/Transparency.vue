@@ -27,11 +27,6 @@
                 }" style="transition-delay: 800ms"></div>
         </div>
 
-        <!-- Subtle grid pattern -->
-        <div
-            class="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:24px_24px]">
-        </div>
-
         <div class="relative max-w-5xl mx-auto flex flex-col items-center text-center space-y-12">
             <!-- Title Section with staggered animation -->
             <header class="space-y-6 overflow-hidden">
