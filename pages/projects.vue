@@ -35,53 +35,25 @@
           </p>
         </div>
 
-        <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 mb-20">
-          <div v-for="(project, index) in featuredProjects" :key="project.title"
-            class="m-10 group relative bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 project-card"
-            :class="{ 'animate-project-in': isProjectsVisible }" :style="`animation-delay: ${400 + index * 200}ms`">
-            <div class="absolute top-4 right-4 z-20 project-badge" :class="{ 'animate-badge-in': isProjectsVisible }"
-              :style="`animation-delay: ${600 + index * 200}ms`">
-              <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
-                {{ project.tags[0] }}
-              </span>
-            </div>
+        <div class="grid grid-cols-1 xl:grid-cols-3 gap-8 mb-20">
 
-            <div class="p-8">
-              <h3
-                class="text-2xl font-bold text-gray-800 mb-3 group-hover:text-brand transition-colors duration-300 project-title">
+
+          <div v-for="(project, index) in featuredProjects" :key="project.title"
+            class="project-card group relative rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2"
+            :class="{ 'animate-project-in': isProjectsVisible }" :style="{
+              backgroundImage: `url(${project.image})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            }">
+            <!-- لایه شیشه‌ای مخصوص متن -->
+            <div class="absolute bottom-0 left-0 w-full p-6 flex items-end backdrop-blur-md bg-white/20">
+              <h3 class="text-2xl font-bold text-white drop-shadow-md">
                 {{ project.title }}
               </h3>
-              <p class="text-gray-600 mb-6 leading-relaxed project-description">{{ project.description }}</p>
-
-              <div class="flex flex-wrap gap-2 mb-6 project-tags">
-                <span v-for="(tag, tagIndex) in project.tags" :key="tag"
-                  class="bg-gray-100 text-gray-700 px-3 py-1.5 rounded-full text-sm font-medium hover:bg-blue-100 hover:text-brand transition-all duration-300 cursor-default project-tag"
-                  :class="{ 'animate-tag-in': isProjectsVisible }"
-                  :style="`animation-delay: ${800 + index * 200 + tagIndex * 50}ms`">
-                  {{ tag }}
-                </span>
-              </div>
-
-              <div class="flex items-center justify-between pt-4 border-t border-gray-100 project-footer">
-                <div class="flex items-center text-gray-500 text-sm project-year">
-                  <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-                      clip-rule="evenodd" />
-                  </svg>
-                  Completed {{ project.year }}
-                </div>
-                <button
-                  class="flex items-center text-brand font-semibold hover:text-brand transition-colors duration-300 group/btn project-button">
-                  View Details
-                  <svg class="w-4 h-4 ml-2 transform group-hover/btn:translate-x-1 transition-transform duration-300"
-                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                  </svg>
-                </button>
-              </div>
             </div>
           </div>
+
+
         </div>
       </div>
     </section>
@@ -119,40 +91,53 @@ const headerStats = [
 const featuredProjects = [
   {
     title: 'Isopropyl Alcohol Plant',
-    description: 'Successful development of a 40,000 tons/year IPA production facility using advanced catalytic technology with significant environmental advantages.',
-    image: '/images/hero-1.jpg',
-    tags: ['Chemical Processing', '40,000 T/Y', 'Catalytic Technology'],
-    capacity: '40K T/Y',
-    duration: '18 Months',
-    year: '2023'
-  },
-  {
-    title: 'Refinery Complex',
-    description: 'Complete design and installation of multiple refinery units including reforming, isomerization, and hydrogen production facilities.',
-    image: '/images/hero-1.jpg',
-    tags: ['Refinery', 'Multiple Units', 'EPC', 'Hydrogen'],
-    capacity: 'Multi-Unit',
-    duration: '36 Months',
-    year: '2022'
+    image: '/images/projects/1.jpg',
   },
   {
     title: '2-Ethylhexanol Production',
-    description: 'Design and installation of 65,000 tons/year unit producing 2EH, normal butanol, and isobutanol using low-pressure hydroformylation.',
-    image: '/images/hero-1.jpg',
-    tags: ['Chemical', '65,000 T/Y', 'Innovation', 'LP Process'],
-    capacity: '65K T/Y',
-    duration: '24 Months',
-    year: '2023'
+    image: '/images/projects/2.jpg',
   },
   {
-    title: 'Butane Distillation Unit',
-    description: 'Complete butane distillation facility with spherical storage tanks and supporting infrastructure for optimal operational efficiency.',
-    image: '/images/hero-1.jpg',
-    tags: ['Distillation', 'Storage', 'Infrastructure', 'Processing'],
-    capacity: 'Custom',
-    duration: '14 Months',
-    year: '2022'
-  }
+    title: 'Pyrolysis Hydrogeneration UniT',
+    image: '/images/projects/3.jpg',
+  },
+  {
+    title: 'Naphtha reforming Unit',
+    image: '/images/projects/4.jpg',
+  },
+  {
+    title: 'C4, C5 / C6 Isomerization Unit',
+    image: '/images/projects/5.jpg',
+  },
+  {
+    title: 'Ammonium Sulphate Production Unit',
+    image: '/images/projects/6.jpg',
+  },
+  {
+    title: 'C4 Seperation Unit',
+    image: '/images/projects/7.jpg',
+  },
+  {
+    title: 'Naphtha & Diesel HydroTreating Unit',
+    image: '/images/projects/8.jpg',
+  },
+  {
+    title: 'Mini Refinery',
+    image: '/images/projects/9.jpg',
+  },
+  {
+    title: 'Hydrogen Production Unit',
+    image: '/images/projects/10.jpg',
+  },
+  {
+    title: 'Sodium Bicarbonate',
+    image: '/images/projects/11.jpg',
+  },
+  {
+    title: 'Condensate, Naphtha & LPG Demercaptanization',
+    image: '/images/projects/12.jpg',
+  },
+
 ]
 
 const companyExperiences = [
@@ -271,6 +256,39 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+.project-card {
+  height: 350px;
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+/* افکت Zoom برای بکگراند */
+.project-card {
+  background-size: 110%;
+}
+
+.project-card:hover {
+  background-size: 125%;
+  filter: brightness(1.15);
+}
+
+/* انیمیشن ورودی */
+.animate-project-in {
+  animation: fadeUp 0.7s ease forwards;
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Animation Delays */
 .animation-delay-2000 {
   animation-delay: 2000ms;

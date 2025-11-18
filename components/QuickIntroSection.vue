@@ -145,10 +145,10 @@ const features = [
 ]
 
 const gallery = [
-    { src: '/images/projects/1.jpg', alt: 'Oil Refinery', title: 'Refinery Operations', class: 'mt-8 lg:mt-12' },
-    { src: '/images/projects/2.jpg', alt: 'Engineering', title: 'Engineering Excellence', class: '' },
-    { src: '/images/projects/3.jpg', alt: 'Pipeline', title: 'Pipeline Construction', class: '' },
-    { src: '/images/projects/4.jpg', alt: 'Technology', title: 'Innovation Center', class: 'mt-8 lg:mt-12' }
+    { src: '/images/section/1.jpg', alt: 'Oil Refinery', title: 'Refinery Operations', class: 'mt-8 lg:mt-12' },
+    { src: '/images/section/2.jpg', alt: 'Engineering', title: 'Engineering Excellence', class: '' },
+    { src: '/images/section/3.jpg', alt: 'Pipeline', title: 'Pipeline Construction', class: '' },
+    { src: '/images/section/4.jpg', alt: 'Technology', title: 'Innovation Center', class: 'mt-8 lg:mt-12' }
 ]
 
 // Intersection Observer for scroll animation
