@@ -78,6 +78,13 @@
         </div>
       </div>
     </section>
+
+    <section>
+      <div class="py-8 flex items-center justify-center">
+        <img src="/images/chart.jpg" />
+      </div>
+
+    </section>
   </div>
 </template>
 
