@@ -79,11 +79,30 @@
       </div>
     </section>
 
+    <!-- Chart Section with Loading -->
     <section>
       <div class="py-8 flex items-center justify-center">
-        <img src="/images/chart.jpg" />
-      </div>
+        <div class="relative w-full max-w-7xl">
+          <!-- Loading State -->
+          <div v-if="isChartLoading" class="chart-loading-container">
+            <div class="loading-spinner">
+              <div class="spinner-circle"></div>
+              <div class="spinner-circle"></div>
+              <div class="spinner-circle"></div>
+            </div>
+            <div class="loading-text">
+              <span class="loading-dots">Chart is loading</span>
+            </div>
+          </div>
 
+          <!-- Chart Image -->
+          <img ref="chartImage" src="/images/chart1.jpg" alt="Performance Chart"
+            class="transition-all duration-500 rounded-lg shadow-lg" :class="{
+              'opacity-0 scale-95': isChartLoading,
+              'opacity-100 scale-100': !isChartLoading
+            }" @load="onChartLoad" @error="onChartError" />
+        </div>
+      </div>
     </section>
   </div>
 </template>
@@ -100,11 +119,13 @@ useSeoMeta({
 const headerSection = ref(null)
 const teamSection = ref(null)
 const strengthsSection = ref(null)
+const chartImage = ref(null)
 
 // Visibility states
 const isHeaderVisible = ref(false)
 const isTeamVisible = ref(false)
 const isStrengthsVisible = ref(false)
+const isChartLoading = ref(true)
 
 // Data
 const badges = [
@@ -130,7 +151,7 @@ const leadershipTeam = [
     name: 'Mansour Bazmi',
     position: 'Member of the Board',
     lastEducation: 'Ph.D. in Chemical Engineering',
-    experience: '30+ years strong experience in oil & gas technology development, brilliant experience in innovative projects management, director of petroleum institutes.'
+    experience: '30+ years strong experience in oil & gas technology development, brilliant experience in innovative projects management, project licensing manager.'
   },
   {
     name: 'Seifoddin Shamsaei',
@@ -138,7 +159,6 @@ const leadershipTeam = [
     lastEducation: 'Mechanical Engineering',
     experience: 'Over 30 years of extensive international experience across Europe, Asia, and Africa in Oil & Gas and Petrochemical sectors. Strong track record in engineering and execution of large-scale refinery and petrochemical projects. Skilled in EPCM for upstream and downstream oil & gas, petrochemical plants, and pipeline projects.'
   },
-
 ]
 
 const strengths = [
@@ -158,6 +178,27 @@ const strengths = [
     subtitle: 'Global project experience'
   }
 ]
+
+// Chart loading handlers
+const onChartLoad = () => {
+  isChartLoading.value = false
+  console.log('Chart loaded successfully')
+}
+
+const onChartError = () => {
+  isChartLoading.value = false
+  console.error('Failed to load chart image')
+}
+
+// Preload chart image
+const preloadChartImage = () => {
+  if (chartImage.value) {
+    const img = new Image()
+    img.src = chartImage.value.src
+    img.onload = onChartLoad
+    img.onerror = onChartError
+  }
+}
 
 // Intersection Observer for scroll animations
 let observers = []
@@ -188,6 +229,9 @@ onMounted(() => {
     isHeaderVisible.value = true
   }, 100)
 
+  // Preload chart image
+  preloadChartImage()
+
   // Create observers for other sections
   createObserver(teamSection, (visible) => {
     if (visible) isTeamVisible.value = true
@@ -207,6 +251,97 @@ onUnmounted(() => {
 /* Animation Delays */
 .animation-delay-2000 {
   animation-delay: 2000ms;
+}
+
+/* Chart Loading Styles */
+.chart-loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border-radius: 1rem;
+  border: 2px dashed #cbd5e1;
+  padding: 2rem;
+}
+
+.loading-spinner {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.spinner-circle {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  animation: loading-bounce 1.4s ease-in-out infinite both;
+}
+
+.spinner-circle:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.spinner-circle:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+.spinner-circle:nth-child(3) {
+  animation-delay: 0s;
+}
+
+.loading-text {
+  text-align: center;
+}
+
+.loading-dots {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #475569;
+  background: linear-gradient(135deg, #475569, #334155);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+}
+
+.loading-dots::after {
+  content: '';
+  animation: loading-dots 1.5s steps(4, end) infinite;
+}
+
+@keyframes loading-bounce {
+
+  0%,
+  80%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes loading-dots {
+
+  0%,
+  20% {
+    content: '.';
+  }
+
+  40% {
+    content: '..';
+  }
+
+  60%,
+  100% {
+    content: '...';
+  }
 }
 
 /* Header Animations */
