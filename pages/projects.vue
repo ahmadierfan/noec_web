@@ -35,45 +35,60 @@
           </p>
         </div>
 
-        <div class="grid grid-cols-1 xl:grid-cols-3 gap-8 mb-20">
-          <div v-for="(project, index) in featuredProjects" :key="project.title" @click="toggleExpand(index)"
-            class="project-card group relative rounded-2xl overflow-hidden shadow-xl cursor-pointer" :class="{
-              'animate-project-in': isProjectsVisible,
-              'expanded': expandedImage === index,
-              'dimmed': expandedImage !== null && expandedImage !== index
-            }" :style="{
-              backgroundImage: `url(${project.image})`,
-              backgroundSize: expandedImage === index ? 'contain' : 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
+        <div class="grid grid-cols-1 2xl:grid-cols-2 gap-8 mb-20">
+          <div v-for="(project, projectIndex) in featuredProjects" :key="project.title"
+            class="project-card group relative rounded-2xl overflow-hidden shadow-xl" :class="{
+              'animate-project-in': isProjectsVisible
             }">
 
-            <!-- لایه شیشه‌ای مخصوص متن -->
-            <div
-              class="absolute bottom-0 left-0 w-full p-6 flex items-end backdrop-blur-md bg-white/20 transition-opacity duration-300"
-              :class="{ 'opacity-0': expandedImage === index }">
-              <h3 class="text-2xl font-bold text-white drop-shadow-md">
-                {{ project.title }}
-              </h3>
+            <!-- Slideshow Container -->
+            <div class="relative w-full h-full">
+              <!-- Slides -->
+              <div v-for="(img, imgIndex) in project.images" :key="imgIndex"
+                class="absolute inset-0 w-full h-full transition-opacity duration-500 bg-gray-200"
+                :class="{ 'opacity-100': project.currentImageIndex === imgIndex, 'opacity-0': project.currentImageIndex !== imgIndex }"
+                :style="{
+                  backgroundImage: `url(${img})`,
+                  backgroundSize: 'contain',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat'
+                }">
+              </div>
+
+              <!-- Navigation Arrows -->
+              <button v-if="project.images.length > 1" @click.stop="prevImage(projectIndex)"
+                class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 rounded-full w-10 h-10 flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100 shadow-lg z-20">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+              </button>
+
+              <button v-if="project.images.length > 1" @click.stop="nextImage(projectIndex)"
+                class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 rounded-full w-10 h-10 flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100 shadow-lg z-20">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </button>
+
+              <!-- Image Indicators -->
+              <div v-if="project.images.length > 1"
+                class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+                <div v-for="(img, imgIndex) in project.images" :key="imgIndex"
+                  class="w-2 h-2 rounded-full transition-all duration-300"
+                  :class="project.currentImageIndex === imgIndex ? 'bg-white' : 'bg-white/50'">
+                </div>
+              </div>
             </div>
 
-            <!-- عنوان برای حالت بزرگ شده -->
-            <div v-if="expandedImage === index"
-              class="absolute bottom-0 left-0 w-full p-8 text-center bg-gradient-to-t from-black/80 to-transparent">
-              <h3 class="text-3xl font-bold text-white drop-shadow-lg">
+            <!-- Project Title Overlay -->
+            <div class="absolute bottom-0 left-0 w-full p-6 flex items-end  backdrop-blur-md bg-white/20">
+              <h3 class="text-2xl font-bold text-dark bg-white bg-opacity-50 rounded px-4">
                 {{ project.title }}
               </h3>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- پس‌زمینه تیره -->
-      <Transition name="backdrop">
-        <div v-if="expandedImage !== null" @click="closeExpand" class="fixed inset-0 bg-black bg-opacity-90 z-40"
-          style="cursor: zoom-out;">
-        </div>
-      </Transition>
     </section>
   </div>
 </template>
@@ -94,81 +109,79 @@ const projectsSection = ref(null)
 const isHeaderVisible = ref(false)
 const isProjectsVisible = ref(false)
 
-// Image expansion state
-const expandedImage = ref(null)
-
-// Data
-const featuredProjects = [
+// Data with multiple images for each project
+const featuredProjects = ref([
   {
     title: 'Isopropyl Alcohol Plant',
-    image: '/images/projects/1.jpg',
+    images: ['/images/projects/1.jpg'],
+    currentImageIndex: 0
   },
   {
     title: '2-Ethylhexanol Production',
-    image: '/images/projects/2.jpg',
+    images: ['/images/projects/2.jpg'],
+    currentImageIndex: 0
   },
   {
     title: 'Pyrolysis Hydrogeneration UniT',
-    image: '/images/projects/3.jpg',
+    images: ['/images/projects/3.jpg'],
+    currentImageIndex: 0
   },
   {
     title: 'Naphtha reforming Unit',
-    image: '/images/projects/4.jpg',
+    images: ['/images/projects/4.jpg', '/images/projects/4-1.jpg'],
+    currentImageIndex: 0
   },
   {
     title: 'C4, C5 / C6 Isomerization Unit',
-    image: '/images/projects/5.jpg',
+    images: ['/images/projects/5.jpg'],
+    currentImageIndex: 0
   },
   {
     title: 'Ammonium Sulphate Production Unit',
-    image: '/images/projects/6.jpg',
+    images: ['/images/projects/6.jpg'],
+    currentImageIndex: 0
   },
   {
     title: 'C4 Seperation Unit',
-    image: '/images/projects/7.jpg',
+    images: ['/images/projects/7.jpg'],
+    currentImageIndex: 0
   },
   {
     title: 'Naphtha & Diesel HydroTreating Unit',
-    image: '/images/projects/8.jpg',
+    images: ['/images/projects/8.jpg'],
+    currentImageIndex: 0
   },
   {
     title: 'Mini Refinery',
-    image: '/images/projects/9.jpg',
+    images: ['/images/projects/9.jpg', '/images/projects/9-1.jpg', '/images/projects/9-2.jpg'],
+    currentImageIndex: 0
   },
   {
     title: 'Hydrogen Production Unit',
-    image: '/images/projects/10.jpg',
+    images: ['/images/projects/10.jpg'],
+    currentImageIndex: 0
   },
   {
     title: 'Sodium Bicarbonate',
-    image: '/images/projects/11.jpg',
+    images: ['/images/projects/11.jpg'],
+    currentImageIndex: 0
   },
   {
     title: 'Condensate, Naphtha & LPG Demercaptanization',
-    image: '/images/projects/12.jpg',
+    images: ['/images/projects/12.jpg'],
+    currentImageIndex: 0
   },
-]
+])
 
-// Image handling functions
-const toggleExpand = (index) => {
-  if (expandedImage.value === index) {
-    closeExpand()
-  } else {
-    expandedImage.value = index
-    document.body.style.overflow = 'hidden'
-  }
+// Image navigation functions
+const nextImage = (projectIndex) => {
+  const project = featuredProjects.value[projectIndex]
+  project.currentImageIndex = (project.currentImageIndex + 1) % project.images.length
 }
 
-const closeExpand = () => {
-  expandedImage.value = null
-  document.body.style.overflow = ''
-}
-
-// Keyboard handler for ESC key
-const handleKeyDown = (event) => {
-  if (event.key === 'Escape' && expandedImage.value !== null) {
-    closeExpand()
-  }
+const prevImage = (projectIndex) => {
+  const project = featuredProjects.value[projectIndex]
+  project.currentImageIndex = project.currentImageIndex === 0 ? project.images.length - 1 : project.currentImageIndex - 1
 }
 
 // Intersection Observer for scroll animations
@@ -202,73 +215,27 @@ onMounted(() => {
   createObserver(projectsSection, (visible) => {
     if (visible) isProjectsVisible.value = true
   }, 0.1)
-
-  window.addEventListener('keydown', handleKeyDown)
 })
 
 onUnmounted(() => {
   observers.forEach(observer => observer.disconnect())
-  window.removeEventListener('keydown', handleKeyDown)
-  document.body.style.overflow = ''
 })
 </script>
 
 <style scoped>
 .project-card {
-  height: 350px;
+  height: 600px;
   position: relative;
   background-size: cover;
   transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-  will-change: transform, width, height, top, left;
+  will-change: transform;
 }
 
 /* حالت عادی - هاور */
-.project-card:not(.expanded):hover {
+.project-card:hover {
   transform: translateY(-8px) scale(1.02);
   filter: brightness(1.15);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
-}
-
-/* حالت بزرگ شده */
-.project-card.expanded {
-  position: fixed !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) !important;
-  width: auto !important;
-  height: auto !important;
-  max-width: 90vw !important;
-  max-height: 90vh !important;
-  min-width: 600px !important;
-  min-height: 400px !important;
-  z-index: 50 !important;
-  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.8) !important;
-  cursor: zoom-out !important;
-  background-color: #000;
-}
-
-@media (max-width: 768px) {
-  .project-card.expanded {
-    min-width: 90vw !important;
-    min-height: 60vh !important;
-  }
-}
-
-/* کارت‌های دیگر تیره می‌شوند */
-.project-card.dimmed {
-  opacity: 0.3;
-  filter: blur(2px);
-}
-
-/* انیمیشن پس‌زمینه */
-.backdrop-enter-active,
-.backdrop-leave-active {
-  transition: opacity 0.4s ease;
-}
-
-.backdrop-enter-from,
-.backdrop-leave-to {
-  opacity: 0;
 }
 
 /* انیمیشن ورودی */
@@ -410,10 +377,5 @@ onUnmounted(() => {
   50% {
     background-position: 100% 50%;
   }
-}
-
-/* Performance optimizations */
-html {
-  scroll-behavior: smooth;
 }
 </style>
