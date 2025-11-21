@@ -113,62 +113,62 @@ const isProjectsVisible = ref(false)
 const featuredProjects = ref([
   {
     title: 'Isopropyl Alcohol Plant',
-    images: ['/images/projects/1.jpg'],
+    images: ['/images/projects/1.jpg?1'],
     currentImageIndex: 0
   },
   {
     title: '2-Ethylhexanol Production',
-    images: ['/images/projects/2.jpg'],
+    images: ['/images/projects/2.jpg?1'],
     currentImageIndex: 0
   },
   {
     title: 'Pyrolysis Hydrogeneration UniT',
-    images: ['/images/projects/3.jpg'],
+    images: ['/images/projects/3.jpg?1'],
     currentImageIndex: 0
   },
   {
     title: 'Naphtha reforming Unit',
-    images: ['/images/projects/4.jpg', '/images/projects/4-1.jpg'],
+    images: ['/images/projects/4.jpg?1', '/images/projects/4-1.jpg?1'],
     currentImageIndex: 0
   },
   {
     title: 'C4, C5 / C6 Isomerization Unit',
-    images: ['/images/projects/5.jpg'],
+    images: ['/images/projects/5.jpg?1'],
     currentImageIndex: 0
   },
   {
     title: 'Ammonium Sulphate Production Unit',
-    images: ['/images/projects/6.jpg'],
+    images: ['/images/projects/6.jpg?1'],
     currentImageIndex: 0
   },
   {
     title: 'C4 Seperation Unit',
-    images: ['/images/projects/7.jpg'],
+    images: ['/images/projects/7.jpg?1'],
     currentImageIndex: 0
   },
   {
     title: 'Naphtha & Diesel HydroTreating Unit',
-    images: ['/images/projects/8.jpg'],
+    images: ['/images/projects/8.jpg?1'],
     currentImageIndex: 0
   },
   {
     title: 'Mini Refinery',
-    images: ['/images/projects/9.jpg', '/images/projects/9-1.jpg', '/images/projects/9-2.jpg'],
+    images: ['/images/projects/9.jpg?1', '/images/projects/9-1.jpg?1', '/images/projects/9-2.jpg?1'],
     currentImageIndex: 0
   },
   {
     title: 'Hydrogen Production Unit',
-    images: ['/images/projects/10.jpg'],
+    images: ['/images/projects/10.jpg?1'],
     currentImageIndex: 0
   },
   {
     title: 'Sodium Bicarbonate',
-    images: ['/images/projects/11.jpg'],
+    images: ['/images/projects/11.jpg?1'],
     currentImageIndex: 0
   },
   {
     title: 'Condensate, Naphtha & LPG Demercaptanization',
-    images: ['/images/projects/12.jpg'],
+    images: ['/images/projects/12.jpg?1'],
     currentImageIndex: 0
   },
 ])
